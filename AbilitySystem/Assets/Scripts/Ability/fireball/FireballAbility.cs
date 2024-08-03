@@ -12,7 +12,7 @@ public class FireballAbility : Ability
     {
         yield return new WaitForSeconds(castTime);
         fireball = Instantiate(prefab, user.transform.position, Quaternion.identity);
-        fireball.GetComponent<FireballPrefab>().Init(target, damage, speed);
+        fireball.GetComponent<FireballPrefab>().Init(user, target, damage, speed);
     }
 
     public override void Unload()

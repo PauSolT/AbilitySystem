@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class FireballPrefab : MonoBehaviour
 {
+    public GameObject user;
     public GameObject target;
     public float damage;
     public float speed;
 
-    public void Init(GameObject target, float damage, float speed)
+    public void Init(GameObject user, GameObject target, float damage, float speed)
     {
+        this.user = user;
         this.target = target;
         this.damage = damage;
         this.speed = speed;
@@ -26,6 +28,10 @@ public class FireballPrefab : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("" + other.gameObject.name);
+        if (other.TryGetComponent(out HealthComponent health) && !other.CompareTag(user.tag))
+        {
+            health.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }
