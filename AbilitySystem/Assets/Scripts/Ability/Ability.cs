@@ -13,6 +13,6 @@ public abstract class Ability : ScriptableObject
 
     public GameObject prefab;
 
-    public abstract IEnumerator AbilityUse(GameObject user);
+    public abstract IEnumerator AbilityUse(GameObject user, GameObject target);
     public abstract void Unload();
 }

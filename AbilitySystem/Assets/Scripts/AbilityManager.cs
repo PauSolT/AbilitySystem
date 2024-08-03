@@ -6,8 +6,13 @@ public class AbilityManager : MonoBehaviour
 {
     public List<Ability> abilities;
     private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
+    public GameObject enemy;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        enemy = FindObjectOfType<Enemy>().gameObject;
+    }
+
     void Update()
     {
         ManageCooldowns();
@@ -37,14 +42,10 @@ public class AbilityManager : MonoBehaviour
     {
         if (!cooldownTimers.ContainsKey(ability))
         {
-            StartCoroutine(ability.AbilityUse(gameObject.transform.gameObject));
+            StartCoroutine(ability.AbilityUse(gameObject.transform.gameObject, enemy));
             cooldownTimers[ability] = ability.cooldown;
             StartCoroutine(HandleAbilityDuration(ability));
-            Debug.Log(ability.abilityName + " used!");
-
         }
-
-
     }
 
     private IEnumerator HandleAbilityDuration(Ability ability)

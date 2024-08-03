@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Fireball")]
 public class FireballAbility : Ability
 {
     GameObject fireball;
-    public override IEnumerator AbilityUse(GameObject user)
+    public float speed;
+    public override IEnumerator AbilityUse(GameObject user, GameObject target)
     {
-
         yield return new WaitForSeconds(castTime);
         fireball = Instantiate(prefab, user.transform.position, Quaternion.identity);
-        fireball.GetComponent<FireballPrefab>().Init(user, damage);
-        Debug.Log("Casting " + abilityName);
+        fireball.GetComponent<FireballPrefab>().Init(target, damage, speed);
     }
 
     public override void Unload()
@@ -20,7 +20,6 @@ public class FireballAbility : Ability
         if (fireball != null)
         {
             Destroy(fireball);
-            Debug.Log(abilityName + " destroyed!");
         }
     }
 
