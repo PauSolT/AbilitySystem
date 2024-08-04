@@ -541,6 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  invincible: 0
 --- !u!1 &1850887946
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +589,9 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 7aa417f819ab8364892242a7d3e1392e, type: 2}
   - {fileID: 11400000, guid: 1973fd7641e197149a496209c6930cb2, type: 2}
+  - {fileID: 11400000, guid: 920bb359bfaebdb4dba9dddf783f2b42, type: 2}
   enemy: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &1907429534
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  invincible: 0
 --- !u!54 &1907429541
 Rigidbody:
   m_ObjectHideFlags: 0
