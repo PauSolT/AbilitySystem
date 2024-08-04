@@ -21,6 +21,10 @@ public class AbilityManager : MonoBehaviour
         {
             UseAbility(abilities[0]);
         }
+        if (Input.GetKeyDown(KeyCode.E) && !cooldownTimers.ContainsKey(abilities[1]))
+        {
+            UseAbility(abilities[1]);
+        }
     }
 
     void ManageCooldowns()
