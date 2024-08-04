@@ -8,9 +8,11 @@ public class AbilityManager : MonoBehaviour
     private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
     public GameObject enemy;
 
+    public GameObject player;
     private void Start()
     {
         enemy = FindObjectOfType<Enemy>().gameObject;
+        player = FindObjectOfType<Player>().gameObject;
     }
 
     void Update()
@@ -24,6 +26,10 @@ public class AbilityManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && !cooldownTimers.ContainsKey(abilities[1]))
         {
             UseAbility(abilities[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.R) && !cooldownTimers.ContainsKey(abilities[2]))
+        {
+            UseAbility(abilities[2]);
         }
     }
 
@@ -46,7 +52,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (!cooldownTimers.ContainsKey(ability))
         {
-            StartCoroutine(ability.AbilityUse(gameObject.transform.gameObject, enemy));
+            StartCoroutine(ability.AbilityUse(player, enemy));
             cooldownTimers[ability] = ability.cooldown;
             StartCoroutine(HandleAbilityDuration(ability));
         }

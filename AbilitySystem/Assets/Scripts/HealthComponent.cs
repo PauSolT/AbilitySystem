@@ -10,6 +10,9 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]
     float currentHealth;
 
+    [SerializeField]
+    bool invincible = false;
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -17,7 +20,7 @@ public class HealthComponent : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (damageAmount <= 0) return;
+        if (damageAmount <= 0 || invincible) return;
 
         currentHealth -= damageAmount;
 
@@ -71,6 +74,22 @@ public class HealthComponent : MonoBehaviour
             duration -= Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void SetInvincible(bool invincible)
+    {
+        this.invincible = invincible;
+    }
+
+    public void SetInvincible(float duration)
+    {
+        StartCoroutine(InvinciblePeriod(duration));
+    }
+    public IEnumerator InvinciblePeriod(float duration)
+    {
+        invincible = true;
+        yield return new WaitForSeconds(duration);
+        invincible = false;
     }
 
     void Die()
