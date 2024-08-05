@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BubblePrefab : MonoBehaviour
 {
-    public GameObject user;
-    public GameObject target;
-    public float damage;
-    public float speed;
+    GameObject user;
+    GameObject target;
+    float damage;
+    float speed;
 
     public void Init(GameObject user, GameObject target, float damage, float speed, float duration)
     {
