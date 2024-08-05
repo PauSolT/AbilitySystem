@@ -17,6 +17,5 @@ MonoBehaviour:
   cooldown: 10
   duration: 5
   damage: 2.5
-  castTime: 0
   prefab: {fileID: 1667503822881733849, guid: cbf5177bb10940042a59f5afc6d82cd9, type: 3}
   interval: 0.5

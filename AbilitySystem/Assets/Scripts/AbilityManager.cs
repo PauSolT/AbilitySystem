@@ -5,62 +5,43 @@ using UnityEngine;
 public class AbilityManager : MonoBehaviour
 {
     public List<Ability> abilities;
-    private Dictionary<Ability, float> cooldownTimers = new Dictionary<Ability, float>();
     public GameObject enemy;
 
     public GameObject player;
+
+    ManagePlayerCooldowns uiPlayerCooldowns;
     private void Start()
     {
         enemy = FindObjectOfType<Enemy>().gameObject;
         player = FindObjectOfType<Player>().gameObject;
+        uiPlayerCooldowns = GetComponent<ManagePlayerCooldowns>();
     }
 
     void Update()
     {
-        ManageCooldowns();
 
-        if (Input.GetKeyDown(KeyCode.Q) && !cooldownTimers.ContainsKey(abilities[0]))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             UseAbility(abilities[0]);
         }
-        if (Input.GetKeyDown(KeyCode.E) && !cooldownTimers.ContainsKey(abilities[1]))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             UseAbility(abilities[1]);
         }
-        if (Input.GetKeyDown(KeyCode.R) && !cooldownTimers.ContainsKey(abilities[2]))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             UseAbility(abilities[2]);
         }
+
+        uiPlayerCooldowns.UpdateSlider1Cooldown(abilities[0].cooldown, abilities[0].GetRemainingCooldown());
+        uiPlayerCooldowns.UpdateSlider2Cooldown(abilities[1].cooldown, abilities[1].GetRemainingCooldown());
+        uiPlayerCooldowns.UpdateSlider3Cooldown(abilities[2].cooldown, abilities[2].GetRemainingCooldown());
     }
 
-    void ManageCooldowns()
-    {
-        foreach (Ability ability in abilities)
-        {
-            if (cooldownTimers.ContainsKey(ability))
-            {
-                cooldownTimers[ability] -= Time.deltaTime;
-                if (cooldownTimers[ability] <= 0)
-                {
-                    cooldownTimers.Remove(ability);
-                }
-            }
-        }
-    }
 
     public void UseAbility(Ability ability)
     {
-        if (!cooldownTimers.ContainsKey(ability))
-        {
-            StartCoroutine(ability.AbilityUse(player, enemy));
-            cooldownTimers[ability] = ability.cooldown;
-            StartCoroutine(HandleAbilityDuration(ability));
-        }
+        ability.UseAbility(player, enemy);
     }
 
-    private IEnumerator HandleAbilityDuration(Ability ability)
-    {
-        yield return new WaitForSeconds(ability.duration);
-        ability.Unload();
-    }
 }

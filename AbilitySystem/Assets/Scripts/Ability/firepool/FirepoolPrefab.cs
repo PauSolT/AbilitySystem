@@ -13,12 +13,22 @@ public class FirepoolPrefab : MonoBehaviour
 
     bool waiting = false;
 
-    public void Init(GameObject user, GameObject target, float damage, float interval)
+    public void Init(GameObject user, GameObject target, float damage, float interval, float duration)
     {
         this.user = user;
         this.target = target;
         this.damage = damage;
         this.interval = interval;
+        StartCoroutine(Unload(duration));
+    }
+
+    private IEnumerator Unload(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (gameObject)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Update()

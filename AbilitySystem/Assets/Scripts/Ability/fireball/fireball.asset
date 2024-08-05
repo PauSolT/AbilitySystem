@@ -17,6 +17,5 @@ MonoBehaviour:
   cooldown: 7
   duration: 3
   damage: 5
-  castTime: 1
   prefab: {fileID: 6089214114238872858, guid: cb73d8defc56fc349b83049a01201fdf, type: 3}
   speed: 10

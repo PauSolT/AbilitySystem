@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Ability : ScriptableObject
@@ -9,10 +11,32 @@ public abstract class Ability : ScriptableObject
     public float cooldown;
     public float duration;
     public float damage;
-    public float castTime;
+
+    [NonSerialized]
+    public float lastUseTime;
+
+    public bool IsOnCooldown()
+    {
+        return Time.time < lastUseTime + cooldown;
+    }
+
+    public float GetRemainingCooldown()
+    {
+        return Mathf.Max(0, lastUseTime + cooldown - Time.time);
+    }
 
     public GameObject prefab;
 
-    public abstract IEnumerator AbilityUse(GameObject user, GameObject target);
+    public void UseAbility(GameObject user, GameObject target)
+    {
+        if (!IsOnCooldown())
+        {
+            lastUseTime = Time.time;
+            AbilityUse(user, target);
+
+        }
+    }
+
+    public abstract void AbilityUse(GameObject user, GameObject target);
     public abstract void Unload();
 }
