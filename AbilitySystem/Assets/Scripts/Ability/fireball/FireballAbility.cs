@@ -12,7 +12,6 @@ public class FireballAbility : Ability
     {
         fireball = Instantiate(prefab, user.transform.position, Quaternion.identity);
         fireball.GetComponent<FireballPrefab>().Init(user, target, damage, speed, duration);
-
     }
 
     public override void Unload()

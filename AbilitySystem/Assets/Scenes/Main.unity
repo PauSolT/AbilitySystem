@@ -1384,72 +1384,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1850887946
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1850887947}
-  - component: {fileID: 1850887948}
-  - component: {fileID: 1850887949}
-  m_Layer: 0
-  m_Name: AbilityManager
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1850887947
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850887946}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1907429539}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1850887948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850887946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577736084e2c3534e8ed8a5fac4226e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilities:
-  - {fileID: 11400000, guid: 7aa417f819ab8364892242a7d3e1392e, type: 2}
-  - {fileID: 11400000, guid: 1973fd7641e197149a496209c6930cb2, type: 2}
-  - {fileID: 11400000, guid: 920bb359bfaebdb4dba9dddf783f2b42, type: 2}
-  enemy: {fileID: 0}
-  player: {fileID: 0}
---- !u!114 &1850887949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850887946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242c1b98e78be18408f91d624ceb95af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ability1: {fileID: 858418327}
-  ability2: {fileID: 2076034243}
-  ability3: {fileID: 1243743865}
 --- !u!1 &1907429534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,6 +1399,7 @@ GameObject:
   - component: {fileID: 1907429535}
   - component: {fileID: 1907429540}
   - component: {fileID: 1907429541}
+  - component: {fileID: 1907429542}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1484,6 +1419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07dd9d83e355e0c46ba4273741090f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentElement: 0
+  elements:
+  - {fileID: 11400000, guid: 077d5764e2a58ef4e9f2753f27ce0906, type: 2}
+  - {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
 --- !u!136 &1907429536
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1559,8 +1498,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.5, z: -7.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1850887947}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1595,6 +1533,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1907429542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907429534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242c1b98e78be18408f91d624ceb95af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability1: {fileID: 858418327}
+  ability2: {fileID: 2076034243}
+  ability3: {fileID: 1243743865}
 --- !u!1 &1911196165
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballPrefab : MonoBehaviour
+public class BubblePrefab : MonoBehaviour
 {
-    GameObject user;
-    GameObject target;
-    float damage;
-    float speed;
+    public GameObject user;
+    public GameObject target;
+    public float damage;
+    public float speed;
 
     public void Init(GameObject user, GameObject target, float damage, float speed, float duration)
     {

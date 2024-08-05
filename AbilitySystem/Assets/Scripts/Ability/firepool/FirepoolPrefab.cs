@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FirepoolPrefab : MonoBehaviour
 {
-    public GameObject user;
-    public GameObject target;
-    public float damage;
-    public float interval;
+    GameObject user;
+    GameObject target;
+    float damage;
+    float interval;
 
     List<HealthComponent> entities = new List<HealthComponent>();
 

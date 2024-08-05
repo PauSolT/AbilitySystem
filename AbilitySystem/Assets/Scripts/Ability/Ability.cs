@@ -20,10 +20,16 @@ public abstract class Ability : ScriptableObject
         return Time.time < lastUseTime + cooldown;
     }
 
-    public float GetRemainingCooldown()
+    float GetRemainingCooldown()
     {
         return Mathf.Max(0, lastUseTime + cooldown - Time.time);
     }
+
+    public float GetRemainingCooldownNormalized()
+    {
+        return (cooldown - GetRemainingCooldown()) / cooldown;
+    }
+
 
     public GameObject prefab;
 
@@ -33,7 +39,6 @@ public abstract class Ability : ScriptableObject
         {
             lastUseTime = Time.time;
             AbilityUse(user, target);
-
         }
     }
 
