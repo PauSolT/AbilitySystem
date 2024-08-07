@@ -11,9 +11,10 @@ public abstract class Ability : ScriptableObject
     public float cooldown;
     public float duration;
     public float damage;
+    public bool blockFromUsingOtherAbilities;
 
     [NonSerialized]
-    public float lastUseTime;
+    float lastUseTime;
 
     public bool IsOnCooldown()
     {
