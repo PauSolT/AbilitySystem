@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        UpdateSlidersCooldown();
+    }
 
+    private void FixedUpdate()
+    {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             UseAbility(GetCurrentElement().abilities[0]);
@@ -38,8 +42,6 @@ public class Player : MonoBehaviour
             NextElement();
         }
 
-
-        UpdateSlidersCooldown();
     }
 
     private void NextElement()
