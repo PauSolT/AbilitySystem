@@ -33,18 +33,37 @@ public class Player : MonoBehaviour
             UseAbility(GetCurrentElement().abilities[2]);
         }
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            NextElement();
+        }
+
+
+        UpdateSlidersCooldown();
+    }
+
+    private void NextElement()
+    {
+        currentElement++;
+        if (currentElement >= elements.Count)
+        {
+            currentElement = 0;
+        }
+    }
+
+    private void UpdateSlidersCooldown()
+    {
         uiPlayerCooldowns.UpdateSlider1Cooldown(GetCurrentElement().abilities[0].GetRemainingCooldownNormalized());
         uiPlayerCooldowns.UpdateSlider2Cooldown(GetCurrentElement().abilities[1].GetRemainingCooldownNormalized());
         uiPlayerCooldowns.UpdateSlider3Cooldown(GetCurrentElement().abilities[2].GetRemainingCooldownNormalized());
     }
-
 
     public void UseAbility(Ability ability)
     {
         ability.UseAbility(gameObject, enemy);
     }
 
-    Element GetCurrentElement()
+    private Element GetCurrentElement()
     {
         return elements[currentElement];
     }
