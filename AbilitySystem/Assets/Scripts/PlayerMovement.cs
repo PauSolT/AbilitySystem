@@ -5,20 +5,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float runSpeed = 6.0f;
-    [SerializeField] private float jumpSpeed = 8.0f;
+    [SerializeField] float runSpeed = 6.0f;
+    [SerializeField] float jumpSpeed = 8.0f;
 
-    // components attached to player
-    private CapsuleCollider coll;
-    private Rigidbody rb;
+    CapsuleCollider coll;
+    Rigidbody rb;
 
-    // input parameters for movement
     Vector2 moveDirection = Vector2.zero;
     bool jumpPressed = false;
 
-    // other
-    private bool isGrounded = false;
-    private bool disableMovement = false;
+    bool isGrounded = false;
+    bool disableMovement = false;
 
 
     Vector3 direction = Vector3.zero;
@@ -59,11 +56,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateIsGrounded()
     {
-        // Check if player is grounded
         localPoint0 = transform.TransformPoint(coll.center - direction * offset);
         localPoint1 = transform.TransformPoint(coll.center + direction * offset);
         Collider[] colliders = Physics.OverlapCapsule(localPoint0, localPoint1, coll.radius);
-        // Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
         isGrounded = false;
         if (colliders.Length > 0)
         {
@@ -72,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
                 if (colliders[i] != coll)
                 {
                     isGrounded = true;
-                    break;
+                    i = colliders.Length;
                 }
             }
         }

@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
-    private Vector2 moveDirection = Vector2.zero;
-    private bool jumpPressed = false;
+    Vector2 moveDirection = Vector2.zero;
+    bool jumpPressed = false;
 
     public static InputManager Instance { get; private set; }
 
