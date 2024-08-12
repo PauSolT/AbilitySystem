@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         UpdateIsGrounded();
 
-        HandleHorizontalMovement();
+        HandleMovement();
 
         HandleJumping();
     }
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void HandleHorizontalMovement()
+    private void HandleMovement()
     {
         rb.velocity = new Vector3(moveDirection.x * runSpeed, rb.velocity.y, moveDirection.y * runSpeed);
     }
