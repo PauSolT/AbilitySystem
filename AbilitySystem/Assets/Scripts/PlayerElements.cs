@@ -30,6 +30,8 @@ public class PlayerElements : MonoBehaviour
                 abil.Init();
             }
         }
+
+        uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
     }
 
     private void FixedUpdate()
@@ -59,6 +61,7 @@ public class PlayerElements : MonoBehaviour
             }
         }
 
+        uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
         GetCurrentElement().PassiveSwitch();
     }
 

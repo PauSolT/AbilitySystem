@@ -17,3 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7aa417f819ab8364892242a7d3e1392e, type: 2}
   - {fileID: 11400000, guid: 1973fd7641e197149a496209c6930cb2, type: 2}
   - {fileID: 11400000, guid: 920bb359bfaebdb4dba9dddf783f2b42, type: 2}
+  elementColor:
+    serializedVersion: 2
+    rgba: 4281619414
+  userHealth: {fileID: 0}
+  healPercentPerAbility: 5

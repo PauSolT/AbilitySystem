@@ -17,5 +17,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae37520ccc70ab84fb2833b218ce00d3, type: 2}
   - {fileID: 11400000, guid: 6db485a0d0092e04c8f63b99bb073c46, type: 2}
   - {fileID: 11400000, guid: 7eed7caf7b3fb0540ba98f8ea8bbadf3, type: 2}
+  elementColor:
+    serializedVersion: 2
+    rgba: 4292719925
   empoweredCooldown: 1
   empowered: 1
