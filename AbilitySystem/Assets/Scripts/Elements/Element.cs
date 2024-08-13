@@ -8,7 +8,9 @@ public abstract class Element : ScriptableObject
     ElementState elementState = ElementState.Unlocked;
     public List<Ability> abilities;
 
-    public abstract void Passive();
+    public abstract void PassiveSwitch();
+    public abstract void PassiveAbilitiy();
+    public abstract void Init();
 
 }
 

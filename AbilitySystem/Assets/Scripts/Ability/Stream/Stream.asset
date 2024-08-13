@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c7c65a9eb7a3247a8c5c30e45317a2, type: 3}
   m_Name: Stream
   m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
   abilityName: stream
   abilityDescription: stream
   cooldown: 2
@@ -20,3 +21,4 @@ MonoBehaviour:
   blockFromUsingOtherAbilities: 1
   prefab: {fileID: 1977099615117686899, guid: e76293bc2e770ac43b11018a0bdad2e3, type: 3}
   interval: 1
+  damageMultiplier: 1.3

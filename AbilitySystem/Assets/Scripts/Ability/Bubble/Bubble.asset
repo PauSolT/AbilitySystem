@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36975be11b70d0b40862920b14aad727, type: 3}
   m_Name: Bubble
   m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
   abilityName: Bubble
   abilityDescription: buble
   cooldown: 3
   duration: 4
   damage: 10
+  blockFromUsingOtherAbilities: 0
   prefab: {fileID: 6089214114238872858, guid: 0fbacd554fbfe7e44bb8e6958ea208ef, type: 3}
   speed: 5
+  damageMultiplier: 1.25

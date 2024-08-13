@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda17f916a0c085438c11150df6f5c95, type: 3}
   m_Name: Firepool
   m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: 077d5764e2a58ef4e9f2753f27ce0906, type: 2}
   abilityName: Firepool
   abilityDescription: Firepool
   cooldown: 10
   duration: 5
   damage: 2.5
+  blockFromUsingOtherAbilities: 0
   prefab: {fileID: 1667503822881733849, guid: cbf5177bb10940042a59f5afc6d82cd9, type: 3}
   interval: 0.5

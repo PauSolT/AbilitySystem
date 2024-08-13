@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d705101619e8784da39d5d0291eca66, type: 3}
   m_Name: fireball
   m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: 077d5764e2a58ef4e9f2753f27ce0906, type: 2}
   abilityName: fireball
   abilityDescription: fireball
   cooldown: 7
   duration: 3
   damage: 5
+  blockFromUsingOtherAbilities: 0
   prefab: {fileID: 6089214114238872858, guid: cb73d8defc56fc349b83049a01201fdf, type: 3}
   speed: 10

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject
 {
+
+    public Element element;
     public string abilityName;
     public string abilityDescription;
     public float cooldown;
@@ -45,4 +47,6 @@ public abstract class Ability : ScriptableObject
 
     public abstract void AbilityUse(GameObject user, GameObject target);
     public abstract void Unload();
+
+    public abstract void Init();
 }

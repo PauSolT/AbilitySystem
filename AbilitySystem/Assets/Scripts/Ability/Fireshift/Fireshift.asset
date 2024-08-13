@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8280fbc09237b5749962324b5e6a5804, type: 3}
   m_Name: Fireshift
   m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: 077d5764e2a58ef4e9f2753f27ce0906, type: 2}
   abilityName: Fireshift
   abilityDescription: Fireshift
   cooldown: 5

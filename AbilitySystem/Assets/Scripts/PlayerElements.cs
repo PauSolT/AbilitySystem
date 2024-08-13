@@ -7,6 +7,7 @@ public class PlayerElements : MonoBehaviour
     [SerializeField]
     int currentElement = 0;
     public List<Element> elements = new List<Element>();
+    public List<Element> equippedElements = new List<Element>();
 
     ManagePlayerCooldowns uiPlayerCooldowns;
     GameObject enemy;
@@ -20,6 +21,15 @@ public class PlayerElements : MonoBehaviour
     {
         uiPlayerCooldowns = GetComponent<ManagePlayerCooldowns>();
         enemy = FindObjectOfType<Enemy>().gameObject;
+
+        foreach (Element elem in elements)
+        {
+            elem.Init();
+            foreach (Ability abil in elem.abilities)
+            {
+                abil.Init();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -48,6 +58,8 @@ public class PlayerElements : MonoBehaviour
                 currentElement = 0;
             }
         }
+
+        GetCurrentElement().PassiveSwitch();
     }
 
     private void UpdateSlidersCooldown()

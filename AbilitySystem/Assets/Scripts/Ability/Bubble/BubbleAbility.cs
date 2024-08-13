@@ -7,10 +7,27 @@ public class BubbleAbility : Ability
 {
     GameObject bubble;
     public float speed;
+    public float damageMultiplier;
+    WaterElement waterElement;
+
+    public override void Init()
+    {
+        waterElement = element as WaterElement;
+    }
+
     public override void AbilityUse(GameObject user, GameObject target)
     {
         bubble = Instantiate(prefab, user.transform.position, Quaternion.identity);
-        bubble.GetComponent<BubblePrefab>().Init(user, target, damage, speed, duration);
+
+        if (waterElement.HasEmpoweredAbility())
+        {
+            bubble.GetComponent<BubblePrefab>().Init(user, target, damage * damageMultiplier, speed, duration);
+            GlobalCoroutines.Instance.StartCoroutine(waterElement.UsedEmpowered());
+        }
+        else
+        {
+            bubble.GetComponent<BubblePrefab>().Init(user, target, damage, speed, duration);
+        }
     }
 
     public override void Unload()
