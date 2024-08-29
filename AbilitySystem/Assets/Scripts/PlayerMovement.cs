@@ -8,28 +8,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float runSpeed = 6.0f;
     [SerializeField] float jumpSpeed = 8.0f;
 
-    CapsuleCollider coll;
-    Rigidbody rb;
+    BoxCollider2D coll;
+    Rigidbody2D rb;
 
     Vector2 moveDirection = Vector2.zero;
     bool jumpPressed = false;
 
     bool isGrounded = false;
     bool disableMovement = false;
+    bool facingRight = true;
 
-
-    Vector3 direction = Vector3.zero;
-    float offset = 0;
-    Vector3 localPoint0 = Vector3.zero;
-    Vector3 localPoint1 = Vector3.zero;
 
     private void Awake()
     {
-        coll = GetComponent<CapsuleCollider>();
-        rb = GetComponent<Rigidbody>();
+        coll = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        direction = new Vector3 { [coll.direction] = 1 };
-        offset = coll.height / 2 - coll.radius;
     }
 
     private void FixedUpdate()
@@ -40,12 +34,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         HandleInput();
-
         UpdateIsGrounded();
-
         HandleMovement();
-
         HandleJumping();
+        UpdateFacingDirection();
     }
 
     private void HandleInput()
@@ -56,9 +48,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateIsGrounded()
     {
-        localPoint0 = transform.TransformPoint(coll.center - direction * offset);
-        localPoint1 = transform.TransformPoint(coll.center + direction * offset);
-        Collider[] colliders = Physics.OverlapCapsule(localPoint0, localPoint1, coll.radius);
+        Bounds colliderBounds = coll.bounds;
+        float colliderRadius = coll.size.x * 0.4f * Mathf.Abs(transform.localScale.x);
+        Vector3 groundCheckPos = colliderBounds.min + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
         isGrounded = false;
         if (colliders.Length > 0)
         {
@@ -75,7 +68,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        rb.velocity = new Vector3(moveDirection.x * runSpeed, rb.velocity.y, moveDirection.y * runSpeed);
+        rb.velocity = new Vector2(moveDirection.x * runSpeed, rb.velocity.y);
+    }
+
+    private void UpdateFacingDirection()
+    {
+        // set facing direction
+        if (moveDirection.x > 0.1f)
+        {
+            facingRight = true;
+        }
+        else if (moveDirection.x < -0.1f)
+        {
+            facingRight = false;
+        }
     }
 
     private void HandleJumping()
@@ -83,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && jumpPressed)
         {
             isGrounded = false;
-            rb.velocity = new Vector3(rb.velocity.x, jumpSpeed, rb.velocity.z);
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
     }
 }
