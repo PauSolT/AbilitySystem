@@ -5,11 +5,11 @@ using UnityEngine;
 public class FireballPrefab : MonoBehaviour
 {
     GameObject user;
-    GameObject target;
+    Vector3 target;
     float damage;
     float speed;
 
-    public void Init(GameObject user, GameObject target, float damage, float speed, float duration)
+    public void Init(GameObject user, Vector3 target, float damage, float speed, float duration)
     {
         this.user = user;
         this.target = target;
@@ -22,8 +22,7 @@ public class FireballPrefab : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 direction = (target.transform.position - transform.position).normalized;
-            transform.position += speed * Time.deltaTime * direction;
+            transform.position += speed * Time.deltaTime * target.normalized;
         }
     }
 

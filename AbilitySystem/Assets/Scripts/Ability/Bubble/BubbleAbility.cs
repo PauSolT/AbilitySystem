@@ -15,7 +15,7 @@ public class BubbleAbility : Ability
         waterElement = element as WaterElement;
     }
 
-    public override void AbilityUse(GameObject user, GameObject target)
+    public override void AbilityUse(GameObject user, Vector3 target)
     {
         bubble = Instantiate(prefab, user.transform.position, Quaternion.identity);
 

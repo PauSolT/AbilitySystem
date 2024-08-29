@@ -36,7 +36,7 @@ public abstract class Ability : ScriptableObject
 
     public GameObject prefab;
 
-    public void UseAbility(GameObject user, GameObject target)
+    public void ActivateAbility(GameObject user, Vector3 target)
     {
         if (!IsOnCooldown())
         {
@@ -45,7 +45,7 @@ public abstract class Ability : ScriptableObject
         }
     }
 
-    public abstract void AbilityUse(GameObject user, GameObject target);
+    public abstract void AbilityUse(GameObject user, Vector3 target);
     public abstract void Unload();
 
     public abstract void Init();

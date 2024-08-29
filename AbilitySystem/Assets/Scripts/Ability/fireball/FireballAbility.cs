@@ -14,7 +14,7 @@ public class FireballAbility : Ability
     {
 
     }
-    public override void AbilityUse(GameObject user, GameObject target)
+    public override void AbilityUse(GameObject user, Vector3 target)
     {
         element.PassiveAbilitiy();
         fireball = Instantiate(prefab, user.transform.position, Quaternion.identity);

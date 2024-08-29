@@ -5,7 +5,7 @@ using UnityEngine;
 public class WavePrefab : MonoBehaviour
 {
     GameObject user;
-    GameObject target;
+    Vector3 target;
     float damage;
     [SerializeField]
     float currentSpeed;
@@ -22,7 +22,7 @@ public class WavePrefab : MonoBehaviour
 
     Vector3 direction;
     public void Init(GameObject user,
-    GameObject target,
+    Vector3 target,
     float damage,
     float speedMax,
     float speedMin,
@@ -37,7 +37,7 @@ public class WavePrefab : MonoBehaviour
         this.speedMin = speedMin;
         this.timeToChange = timeToChange;
         this.slowDelay = slowDelay;
-        direction = (target.transform.position - transform.position).normalized;
+        direction = (target - transform.position).normalized;
         changePerSecond = (speedMin - speedMax) / timeToChange;
         currentSpeed = speedMax;
         StartCoroutine(Unload(duration));

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirepoolPrefab : MonoBehaviour
 {
     GameObject user;
-    GameObject target;
+    Vector3 target;
     float damage;
     float interval;
 
@@ -13,7 +13,7 @@ public class FirepoolPrefab : MonoBehaviour
 
     bool waiting = false;
 
-    public void Init(GameObject user, GameObject target, float damage, float interval, float duration)
+    public void Init(GameObject user, Vector3 target, float damage, float interval, float duration)
     {
         this.user = user;
         this.target = target;

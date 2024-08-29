@@ -19,7 +19,7 @@ public class WaveAbility : Ability
 
     }
 
-    public override void AbilityUse(GameObject user, GameObject target)
+    public override void AbilityUse(GameObject user, Vector3 target)
     {
         wave = Instantiate(prefab, user.transform.position, Quaternion.identity);
         if (waterElement.HasEmpoweredAbility())

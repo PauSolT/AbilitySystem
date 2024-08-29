@@ -13,10 +13,10 @@ public class FirepoolAbility : Ability
     public override void Init()
     {
     }
-    public override void AbilityUse(GameObject user, GameObject target)
+    public override void AbilityUse(GameObject user, Vector3 target)
     {
         element.PassiveAbilitiy();
-        firepool = Instantiate(prefab, target.transform.position, Quaternion.identity);
+        firepool = Instantiate(prefab, target, Quaternion.identity);
         firepool.GetComponent<FirepoolPrefab>().Init(user, target, damage, interval, duration);
     }
 

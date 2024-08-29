@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerElements : MonoBehaviour
 {
@@ -93,7 +94,10 @@ public class PlayerElements : MonoBehaviour
 
     public void UseAbility(Ability ability)
     {
-        ability.UseAbility(gameObject, enemy);
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Vector3 mouseToWorld = Camera.main.ScreenToWorldPoint(mousePosition);
+        mouseToWorld.z = 0;
+        ability.ActivateAbility(gameObject, mouseToWorld);
     }
 
     private Element GetCurrentElement()

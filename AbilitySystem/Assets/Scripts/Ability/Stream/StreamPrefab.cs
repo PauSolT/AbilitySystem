@@ -35,8 +35,6 @@ public class StreamPrefab : MonoBehaviour
         {
             StartCoroutine(ActiveAbility());
         }
-
-        transform.Rotate(0, 0, 30 * Time.deltaTime);
     }
 
     private IEnumerator ActiveAbility()
@@ -45,11 +43,7 @@ public class StreamPrefab : MonoBehaviour
 
         foreach (HealthComponent entity in entities)
         {
-            if (user.CompareTag(entity.gameObject.tag))
-            {
-                entity.Heal(damage);
-            }
-            else if (!user.CompareTag(entity.gameObject.tag))
+            if (!user.CompareTag(entity.gameObject.tag))
             {
                 entity.TakeDamage(damage);
             }
