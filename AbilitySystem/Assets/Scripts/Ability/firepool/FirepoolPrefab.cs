@@ -5,6 +5,7 @@ using UnityEngine;
 public class FirepoolPrefab : MonoBehaviour
 {
     GameObject user;
+    GameObject parent;
     Vector3 target;
     float damage;
     float interval;
@@ -13,6 +14,7 @@ public class FirepoolPrefab : MonoBehaviour
 
     bool waiting = false;
 
+
     public void Init(GameObject user, Vector3 target, float damage, float interval, float duration)
     {
         this.user = user;
@@ -20,19 +22,22 @@ public class FirepoolPrefab : MonoBehaviour
         this.damage = damage;
         this.interval = interval;
         StartCoroutine(Unload(duration));
+
+        parent = gameObject.transform.parent.gameObject;
     }
 
     private IEnumerator Unload(float duration)
     {
         yield return new WaitForSeconds(duration);
-        if (gameObject)
+        if (parent)
         {
-            Destroy(gameObject);
+            Destroy(parent);
         }
     }
 
     public void Update()
     {
+
         if (entities.Count > 0 && !waiting)
         {
             StartCoroutine(ActiveAbility());
@@ -69,7 +74,7 @@ public class FirepoolPrefab : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out HealthComponent health) && entities.Contains(health))
         {

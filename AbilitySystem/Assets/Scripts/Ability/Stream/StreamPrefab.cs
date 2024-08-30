@@ -63,7 +63,7 @@ public class StreamPrefab : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out HealthComponent health) && entities.Contains(health))
         {
