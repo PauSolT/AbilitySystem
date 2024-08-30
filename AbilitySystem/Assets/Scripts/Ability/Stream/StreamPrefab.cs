@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StreamPrefab : MonoBehaviour
 {
     GameObject user;
+    PlayerMovement player;
     float damage;
     float interval;
 
@@ -18,6 +20,7 @@ public class StreamPrefab : MonoBehaviour
         this.damage = damage;
         this.interval = interval;
         StartCoroutine(Unload(duration));
+        user.TryGetComponent(out player);
     }
 
     private IEnumerator Unload(float duration)
@@ -31,6 +34,18 @@ public class StreamPrefab : MonoBehaviour
 
     public void Update()
     {
+        if (player)
+        {
+            if (player.facingRight)
+            {
+                transform.position = player.transform.position + new Vector3(transform.localScale.z / 2 + 2f, 0.5f, 0);
+            }
+            else
+            {
+                transform.position = player.transform.position + new Vector3(-(transform.localScale.z / 2 + 2f), 0.5f, 0);
+            }
+        }
+
         if (entities.Count > 0 && !waiting)
         {
             StartCoroutine(ActiveAbility());

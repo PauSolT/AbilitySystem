@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded = false;
     bool disableMovement = false;
-    bool facingRight = true;
+    public bool facingRight = true;
 
 
     private void Awake()

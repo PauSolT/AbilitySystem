@@ -50,11 +50,7 @@ public class FirepoolPrefab : MonoBehaviour
 
         foreach (HealthComponent entity in entities)
         {
-            if (user.CompareTag(entity.gameObject.tag))
-            {
-                entity.Heal(damage);
-            }
-            else if (!user.CompareTag(entity.gameObject.tag))
+            if (!user.CompareTag(entity.gameObject.tag))
             {
                 entity.TakeDamage(damage);
             }

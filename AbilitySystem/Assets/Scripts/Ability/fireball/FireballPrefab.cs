@@ -6,6 +6,7 @@ public class FireballPrefab : MonoBehaviour
 {
     GameObject user;
     Vector3 target;
+    Vector3 direction;
     float damage;
     float speed;
 
@@ -16,13 +17,14 @@ public class FireballPrefab : MonoBehaviour
         this.damage = damage;
         this.speed = speed;
         StartCoroutine(Unload(duration));
+        direction = (target - transform.position).normalized;
     }
 
     public void Update()
     {
         if (target != null)
         {
-            transform.position += speed * Time.deltaTime * target.normalized;
+            transform.position += speed * Time.deltaTime * direction;
         }
     }
 

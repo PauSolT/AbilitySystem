@@ -17,7 +17,7 @@ public class StreamAbility : Ability
 
     public override void AbilityUse(GameObject user, Vector3 target)
     {
-        stream = Instantiate(prefab, user.transform.position + new Vector3(0, 0.5f, prefab.transform.localScale.z / 2 + 1f), Quaternion.identity, user.transform);
+        stream = Instantiate(prefab, user.transform.position + new Vector3(prefab.transform.localScale.z / 2 + 2f, 0.5f, 0), Quaternion.identity, user.transform);
         if (waterElement.HasEmpoweredAbility())
         {
             stream.GetComponent<StreamPrefab>().Init(user, damage * damageMultiplier, interval, duration);
