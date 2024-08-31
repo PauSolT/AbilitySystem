@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
@@ -13,16 +14,55 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]
     bool invincible = false;
 
+    ShieldComponent shield;
+
     void Awake()
     {
         currentHealth = maxHealth;
     }
 
+    float ShieldTakesDamage(float damage)
+    {
+        float damageToHealth = 0;
+        TryGetComponent(out shield);
+
+        if (!shield) return damageToHealth;
+
+        if (shield && ShieldComponent.TotalShield > 0)
+        {
+            shield.SetShield(shield.Shield - damage);
+            if (shield.Shield < 0 && ShieldComponent.TotalShield > 0)
+            {
+                ShieldTakesDamage(damage);
+            }
+            else if (shield.Shield < 0 && ShieldComponent.TotalShield < 0)
+            {
+                damageToHealth = Mathf.Abs(shield.Shield);
+            }
+        }
+        else
+        {
+            damageToHealth = 100000;
+        }
+        return damageToHealth;
+    }
+
+
     public void TakeDamage(float damageAmount)
     {
+        Debug.Log("damageAmount " + damageAmount);
         if (damageAmount <= 0 || invincible) return;
 
-        currentHealth -= damageAmount;
+        float shieldDamage = ShieldTakesDamage(damageAmount);
+        if (shieldDamage > 0)
+        {
+            currentHealth -= shieldDamage;
+        }
+        else
+        {
+            currentHealth -= damageAmount;
+        }
+        Debug.Log("currentHealth " + currentHealth);
 
         if (currentHealth <= 0)
         {

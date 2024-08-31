@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d659ba3457895c44b0876f0218c2453, type: 3}
-  m_Name: Wave
+  m_Name: BubbleShield
   m_EditorClassIdentifier: 
   element: {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
   abilityName: Wave
   abilityDescription: wave
   cooldown: 3
-  duration: 2.5
+  duration: 7
   damage: 15
   blockFromUsingOtherAbilities: 0
-  prefab: {fileID: 1977099615117686899, guid: 5b71c931f48c22443ade74a1542e7ae0, type: 3}
-  speedMax: 12
-  speedMin: 5
-  timeToChange: 1.2
-  slowDelay: 0.8
-  damageMultiplier: 1.25
+  prefab: {fileID: 6089214114238872858, guid: 0db9eb744b2646d43b3cb43d9e697f87, type: 3}
+  shield: 20
+  shieldMultiplier: 1.2
