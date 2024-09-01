@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
@@ -14,7 +13,10 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]
     bool invincible = false;
 
-    ShieldComponent shield;
+    [SerializeField]
+    ShieldComponent[] shields;
+
+    public float Shield { get; set; }
 
     void Awake()
     {
@@ -24,45 +26,39 @@ public class HealthComponent : MonoBehaviour
     float ShieldTakesDamage(float damage)
     {
         float damageToHealth = 0;
-        TryGetComponent(out shield);
+        if (damage <= 0) return damageToHealth;
+        if (Shield <= 0) return damage;
 
-        if (!shield) return damageToHealth;
+        shields = GetComponents<ShieldComponent>();
 
-        if (shield && ShieldComponent.TotalShield > 0)
+        if (!shields[0] || shields == null) damageToHealth = damage;
+
+        if (shields[0] && Shield > 0)
         {
-            shield.SetShield(shield.Shield - damage);
-            if (shield.Shield < 0 && ShieldComponent.TotalShield > 0)
+            shields[0].ShieldDamage(damage);
+
+            if (shields[0].Shield <= 0 && Shield > 0)
             {
-                ShieldTakesDamage(damage);
+                float restOfDamage = Mathf.Abs(shields[0].Shield);
+
+                shields[1].DamageShieldOnly(restOfDamage);
             }
-            else if (shield.Shield < 0 && ShieldComponent.TotalShield < 0)
+            else if (shields[0].Shield <= 0 && Shield <= 0)
             {
-                damageToHealth = Mathf.Abs(shield.Shield);
+                damageToHealth = Mathf.Abs(shields[0].Shield);
             }
         }
-        else
-        {
-            damageToHealth = 100000;
-        }
+
         return damageToHealth;
     }
 
 
     public void TakeDamage(float damageAmount)
     {
-        Debug.Log("damageAmount " + damageAmount);
         if (damageAmount <= 0 || invincible) return;
 
-        float shieldDamage = ShieldTakesDamage(damageAmount);
-        if (shieldDamage > 0)
-        {
-            currentHealth -= shieldDamage;
-        }
-        else
-        {
-            currentHealth -= damageAmount;
-        }
-        Debug.Log("currentHealth " + currentHealth);
+        //Checks if it has shield, if it doesn't, do full damage
+        currentHealth -= ShieldTakesDamage(damageAmount);
 
         if (currentHealth <= 0)
         {

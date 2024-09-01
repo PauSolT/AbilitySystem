@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class WaterElement : Element
 {
 
     [SerializeField] float empoweredCooldown = 20f;
-    [SerializeField] bool empowered = true;
+    [NonSerialized] bool empowered = true;
 
     public override void Init()
     {

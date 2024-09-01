@@ -20,5 +20,4 @@ MonoBehaviour:
   elementColor:
     serializedVersion: 2
     rgba: 4292719925
-  empoweredCooldown: 1
-  empowered: 1
+  empoweredCooldown: 20
