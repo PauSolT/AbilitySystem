@@ -21,12 +21,12 @@ public class BubbleAbility : Ability
 
         if (waterElement.HasEmpoweredAbility())
         {
-            bubble.GetComponent<BubblePrefab>().Init(user, target, damage * damageMultiplier, speed, duration);
+            bubble.GetComponent<BubblePrefab>().Init(user, target, damage * damageMultiplier, speed, duration, element);
             GlobalCoroutines.Instance.StartCoroutine(waterElement.UsedEmpowered());
         }
         else
         {
-            bubble.GetComponent<BubblePrefab>().Init(user, target, damage, speed, duration);
+            bubble.GetComponent<BubblePrefab>().Init(user, target, damage, speed, duration, element);
         }
     }
 

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(HealthComponent))]
 public class ShieldComponent : MonoBehaviour
 {
+    public static event Action OnShieldDestroy;
     public float Shield { get; private set; } = 0;
     public HealthComponent totalShield;
 
@@ -41,6 +42,7 @@ public class ShieldComponent : MonoBehaviour
         totalShield.Shield += Shield;
         yield return new WaitForSeconds(time);
         totalShield.Shield -= Shield;
+        OnShieldDestroy?.Invoke();
         Destroy(this);
     }
 
@@ -48,6 +50,7 @@ public class ShieldComponent : MonoBehaviour
     {
         if (Shield <= 0)
         {
+            OnShieldDestroy?.Invoke();
             Destroy(this);
         }
     }

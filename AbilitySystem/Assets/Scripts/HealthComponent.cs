@@ -46,6 +46,7 @@ public class HealthComponent : MonoBehaviour
             else if (shields[0].Shield <= 0 && Shield <= 0)
             {
                 damageToHealth = Mathf.Abs(shields[0].Shield);
+                Shield = 0;
             }
         }
 
@@ -53,7 +54,7 @@ public class HealthComponent : MonoBehaviour
     }
 
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, Element element)
     {
         if (damageAmount <= 0 || invincible) return;
 
@@ -64,22 +65,6 @@ public class HealthComponent : MonoBehaviour
         {
             currentHealth = 0;
             Die();
-        }
-    }
-
-    public void TakeDamageOverTime(float damageAmount, float duration)
-    {
-        StartCoroutine(DamageOverTime(damageAmount, duration));
-    }
-
-    private IEnumerator DamageOverTime(float damageAmount, float duration)
-    {
-        float damagePerSecond = damageAmount / duration;
-        while (duration > 0)
-        {
-            TakeDamage(damagePerSecond * Time.deltaTime);
-            duration -= Time.deltaTime;
-            yield return null;
         }
     }
 
@@ -95,22 +80,6 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
-
-    public void HealingOverTime(float healAmount, float duration)
-    {
-        StartCoroutine(HealOverTime(healAmount, duration));
-    }
-
-    private IEnumerator HealOverTime(float healAmount, float duration)
-    {
-        float healingPerSecond = healAmount / duration;
-        while (duration > 0)
-        {
-            TakeDamage(healingPerSecond * Time.deltaTime);
-            duration -= Time.deltaTime;
-            yield return null;
-        }
-    }
 
     public void SetInvincible(bool invincible)
     {

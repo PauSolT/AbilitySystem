@@ -17,7 +17,7 @@ public class FirepoolAbility : Ability
     {
         element.PassiveAbilitiy();
         firepool = Instantiate(prefab, target, Quaternion.identity);
-        firepool.GetComponentInChildren<FirepoolPrefab>().Init(user, target, damage, interval, duration);
+        firepool.GetComponentInChildren<FirepoolPrefab>().Init(user, target, damage, interval, duration, element);
     }
 
     public override void Unload()

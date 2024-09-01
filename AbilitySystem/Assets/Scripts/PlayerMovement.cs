@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    Element element;
+
     private void FixedUpdate()
     {
         if (disableMovement)
@@ -38,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleJumping();
         UpdateFacingDirection();
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GetComponent<HealthComponent>().TakeDamage(30, element);
+        }
     }
 
     private void HandleInput()

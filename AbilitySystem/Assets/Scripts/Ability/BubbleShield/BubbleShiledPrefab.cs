@@ -5,26 +5,40 @@ using UnityEngine;
 public class BubbleShiledPrefab : MonoBehaviour
 {
 
+    Element element;
     float damage;
     [SerializeField] List<HealthComponent> entities = new List<HealthComponent>();
 
 
-    public void Init(float damage, float duration)
+    public void Init(float damage, float duration, Element element)
     {
         this.damage = damage;
+        this.element = element;
         StartCoroutine(Unload(duration));
+        ShieldComponent.OnShieldDestroy += DestroyShield;
     }
 
     private IEnumerator Unload(float duration)
     {
         yield return new WaitForSeconds(duration);
-        foreach (HealthComponent enemy in entities)
-        {
-            enemy.TakeDamage(damage);
-        }
+        DestroyShield();
+    }
+
+    private void DestroyShield()
+    {
+        Explode();
+        ShieldComponent.OnShieldDestroy -= DestroyShield;
         if (gameObject)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Explode()
+    {
+        foreach (HealthComponent enemy in entities)
+        {
+            enemy.TakeDamage(damage, element);
         }
     }
 

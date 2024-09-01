@@ -17,8 +17,6 @@ public class BubbleShiledAbility : Ability
 
     public override void AbilityUse(GameObject user, Vector3 target)
     {
-        bubbleShiled = Instantiate(prefab, user.transform.position, Quaternion.identity, user.transform);
-        bubbleShiled.GetComponent<BubbleShiledPrefab>().Init(damage, duration);
         if (waterElement.HasEmpoweredAbility())
         {
             user.AddComponent<ShieldComponent>().Init(shield * shieldMultiplier, duration);
@@ -28,6 +26,8 @@ public class BubbleShiledAbility : Ability
         {
             user.AddComponent<ShieldComponent>().Init(shield, duration);
         }
+        bubbleShiled = Instantiate(prefab, user.transform.position, Quaternion.identity, user.transform);
+        bubbleShiled.GetComponent<BubbleShiledPrefab>().Init(damage, duration, element);
     }
 
     public override void Unload()

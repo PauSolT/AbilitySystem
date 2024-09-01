@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StreamPrefab : MonoBehaviour
 {
+    Element element;
     GameObject user;
     PlayerMovement player;
     float damage;
@@ -14,11 +15,12 @@ public class StreamPrefab : MonoBehaviour
 
     bool waiting = false;
 
-    public void Init(GameObject user, float damage, float interval, float duration)
+    public void Init(GameObject user, float damage, float interval, float duration, Element element)
     {
         this.user = user;
         this.damage = damage;
         this.interval = interval;
+        this.element = element;
         StartCoroutine(Unload(duration));
         user.TryGetComponent(out player);
     }
@@ -60,7 +62,7 @@ public class StreamPrefab : MonoBehaviour
         {
             if (!user.CompareTag(entity.gameObject.tag))
             {
-                entity.TakeDamage(damage);
+                entity.TakeDamage(damage, element);
             }
         }
 

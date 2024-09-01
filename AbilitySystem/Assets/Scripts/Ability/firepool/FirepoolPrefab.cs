@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FirepoolPrefab : MonoBehaviour
 {
+    Element element;
     GameObject user;
     GameObject parent;
     Vector3 target;
@@ -15,12 +16,13 @@ public class FirepoolPrefab : MonoBehaviour
     bool waiting = false;
 
 
-    public void Init(GameObject user, Vector3 target, float damage, float interval, float duration)
+    public void Init(GameObject user, Vector3 target, float damage, float interval, float duration, Element element)
     {
         this.user = user;
         this.target = target;
         this.damage = damage;
         this.interval = interval;
+        this.element = element;
         StartCoroutine(Unload(duration));
 
         parent = gameObject.transform.parent.gameObject;
@@ -52,7 +54,7 @@ public class FirepoolPrefab : MonoBehaviour
         {
             if (!user.CompareTag(entity.gameObject.tag))
             {
-                entity.TakeDamage(damage);
+                entity.TakeDamage(damage, element);
             }
         }
 

@@ -18,7 +18,7 @@ public class FireballAbility : Ability
     {
         element.PassiveAbilitiy();
         fireball = Instantiate(prefab, user.transform.position, Quaternion.identity);
-        fireball.GetComponent<FireballPrefab>().Init(user, target, damage, speed, duration);
+        fireball.GetComponent<FireballPrefab>().Init(user, target, damage, speed, duration, element);
     }
 
     public override void Unload()

@@ -20,12 +20,12 @@ public class StreamAbility : Ability
         stream = Instantiate(prefab, user.transform.position + new Vector3(prefab.transform.localScale.z / 2 + 2f, 0.5f, 0), Quaternion.identity, user.transform);
         if (waterElement.HasEmpoweredAbility())
         {
-            stream.GetComponent<StreamPrefab>().Init(user, damage * damageMultiplier, interval, duration);
+            stream.GetComponent<StreamPrefab>().Init(user, damage * damageMultiplier, interval, duration, element);
             GlobalCoroutines.Instance.StartCoroutine(waterElement.UsedEmpowered());
         }
         else
         {
-            stream.GetComponent<StreamPrefab>().Init(user, damage, interval, duration);
+            stream.GetComponent<StreamPrefab>().Init(user, damage, interval, duration, element);
         }
     }
 

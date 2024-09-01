@@ -7,8 +7,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.AddComponent<ShieldComponent>().Init(20, 5);
-        gameObject.AddComponent<ShieldComponent>().Init(20, -1);
 
     }
 
