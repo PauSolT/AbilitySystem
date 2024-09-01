@@ -31,7 +31,7 @@ public class PlayerElements : MonoBehaviour
                 abil.Init();
             }
         }
-
+        elements[currentElement].elementState = ElementState.Active;
         uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
     }
 
@@ -53,6 +53,7 @@ public class PlayerElements : MonoBehaviour
 
     private void HandleCyclingElements()
     {
+        elements[currentElement].elementState = ElementState.Equipped;
         if (cycleElementPressed)
         {
             currentElement++;
@@ -62,6 +63,7 @@ public class PlayerElements : MonoBehaviour
             }
         }
 
+        elements[currentElement].elementState = ElementState.Active;
         uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
         GetCurrentElement().PassiveSwitch();
     }

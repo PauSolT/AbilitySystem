@@ -41,9 +41,15 @@ public class PlayerMovement : MonoBehaviour
         HandleJumping();
         UpdateFacingDirection();
 
+    }
+
+    private void Update()
+    {
+
         if (Input.GetKeyDown(KeyCode.P))
         {
-            GetComponent<HealthComponent>().TakeDamage(30, element);
+            GetComponent<HealthComponent>().TakeDamage(50, element);
+            Debug.Log("Player damaged by 50!");
         }
     }
 

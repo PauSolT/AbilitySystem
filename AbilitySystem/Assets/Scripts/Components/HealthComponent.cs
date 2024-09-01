@@ -37,15 +37,28 @@ public class HealthComponent : MonoBehaviour
         {
             shields[0].ShieldDamage(damage);
 
-            if (shields[0].Shield <= 0 && Shield > 0)
+            if (shields[0].Shield <= 0)
             {
                 float restOfDamage = Mathf.Abs(shields[0].Shield);
+                int shieldNumber = 0;
+                while (restOfDamage != 0 && shieldNumber < shields.Length - 1)
+                {
+                    shieldNumber++;
+                    shields[shieldNumber].DamageShieldOnly(restOfDamage);
+                    if (shields[shieldNumber].Shield <= 0)
+                    {
+                        restOfDamage = Mathf.Abs(shields[shieldNumber].Shield);
+                    }
+                    else
+                    {
+                        restOfDamage = 0;
+                    }
+                }
 
-                shields[1].DamageShieldOnly(restOfDamage);
             }
-            else if (shields[0].Shield <= 0 && Shield <= 0)
+            if (shields[shields.Length - 1].Shield <= 0)
             {
-                damageToHealth = Mathf.Abs(shields[0].Shield);
+                damageToHealth = Mathf.Abs(shields[shields.Length - 1].Shield);
                 Shield = 0;
             }
         }

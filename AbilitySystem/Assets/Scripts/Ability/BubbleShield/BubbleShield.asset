@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BubbleShield
   m_EditorClassIdentifier: 
   element: {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
-  abilityName: Wave
-  abilityDescription: wave
-  cooldown: 3
+  abilityName: Bubble shield
+  abilityDescription: bubble shield
+  cooldown: 0.5
   duration: 7
   damage: 15
   blockFromUsingOtherAbilities: 0
