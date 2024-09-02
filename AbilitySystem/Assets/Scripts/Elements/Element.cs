@@ -11,8 +11,9 @@ public abstract class Element : ScriptableObject
 
     public Color32 elementColor;
 
-    public abstract void PassiveSwitch();
-    public abstract void PassiveAbilitiy();
+    public abstract void PassiveOffSwitch();
+    public abstract void PassiveOnSwitch();
+    public abstract void PassiveOnAbilitiy();
     public abstract void Init();
 
 }
@@ -20,7 +21,9 @@ public abstract class Element : ScriptableObject
 public enum ElementName
 {
     Fire,
-    Water
+    Water,
+    Earth,
+    Physical
 }
 
 public enum ElementState

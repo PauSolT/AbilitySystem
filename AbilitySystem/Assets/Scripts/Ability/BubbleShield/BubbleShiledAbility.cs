@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Abilities/Wave")]
+[CreateAssetMenu(menuName = "Abilities/BubbleShield")]
 public class BubbleShiledAbility : Ability
 {
     GameObject bubbleShiled;
@@ -37,7 +37,4 @@ public class BubbleShiledAbility : Ability
             Destroy(bubbleShiled);
         }
     }
-
-
-
 }

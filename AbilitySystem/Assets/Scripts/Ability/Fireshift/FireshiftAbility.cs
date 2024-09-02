@@ -12,7 +12,7 @@ public class FireshiftAbility : Ability
     }
     public override void AbilityUse(GameObject user, Vector3 target)
     {
-        element.PassiveAbilitiy();
+        element.PassiveOnAbilitiy();
         HealthComponent userHealth = user.GetComponent<HealthComponent>();
         userHealth.SetInvincible(duration);
     }

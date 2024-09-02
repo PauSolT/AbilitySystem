@@ -14,12 +14,17 @@ public class WaterElement : Element
     {
 
     }
-    public override void PassiveSwitch()
+    public override void PassiveOnSwitch()
     {
 
     }
 
-    public override void PassiveAbilitiy()
+    public override void PassiveOffSwitch()
+    {
+
+    }
+
+    public override void PassiveOnAbilitiy()
     {
 
     }

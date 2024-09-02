@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerElements : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class PlayerElements : MonoBehaviour
 
         elements[currentElement].elementState = ElementState.Active;
         uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
-        GetCurrentElement().PassiveSwitch();
+        GetCurrentElement().PassiveOnSwitch();
     }
 
     private void UpdateSlidersCooldown()

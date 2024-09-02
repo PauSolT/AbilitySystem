@@ -17,6 +17,7 @@ public class HealthComponent : MonoBehaviour
     ShieldComponent[] shields;
 
     public float Shield { get; set; }
+    public float DamageReduction { get; set; }
 
     void Awake()
     {
@@ -71,7 +72,7 @@ public class HealthComponent : MonoBehaviour
     {
         if (damageAmount <= 0 || invincible) return;
 
-        //Checks if it has shield, if it doesn't, do full damage
+        damageAmount *= (100f - DamageReduction) / 100f;
         currentHealth -= ShieldTakesDamage(damageAmount);
 
         if (currentHealth <= 0)
@@ -112,6 +113,6 @@ public class HealthComponent : MonoBehaviour
 
     void Die()
     {
-
+        Debug.Log(gameObject.name + " died!");
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Element/Fire")]
@@ -13,12 +12,17 @@ public class FireElement : Element
     {
         userHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthComponent>();
     }
-    public override void PassiveSwitch()
+    public override void PassiveOnSwitch()
     {
 
     }
 
-    public override void PassiveAbilitiy()
+    public override void PassiveOffSwitch()
+    {
+
+    }
+
+    public override void PassiveOnAbilitiy()
     {
         userHealth.Heal(userHealth.maxHealth * healPercentPerAbility / 100);
     }

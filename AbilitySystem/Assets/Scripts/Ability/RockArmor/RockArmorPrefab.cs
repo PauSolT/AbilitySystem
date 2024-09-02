@@ -2,38 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirepoolPrefab : MonoBehaviour
+public class RockArmorPrefab : MonoBehaviour
 {
+
+    HealthComponent playerHealth;
     Element element;
-    GameObject user;
-    GameObject parent;
-    Vector3 target;
     float damage;
+    float damageReduction;
     float interval;
 
-    List<HealthComponent> entities = new List<HealthComponent>();
+    [SerializeField] List<HealthComponent> entities = new List<HealthComponent>();
 
     bool waiting = false;
 
-
-    public void Init(GameObject user, Vector3 target, float damage, float interval, float duration, Element element)
+    public void Init(float damage, float duration, float interval, Element element, HealthComponent playerHealth, float damageReduction)
     {
-        this.user = user;
-        this.target = target;
         this.damage = damage;
         this.interval = interval;
         this.element = element;
+        this.playerHealth = playerHealth;
+        this.damageReduction = damageReduction;
         StartCoroutine(Unload(duration));
-
-        parent = gameObject.transform.parent.gameObject;
     }
 
     private IEnumerator Unload(float duration)
     {
         yield return new WaitForSeconds(duration);
-        if (parent)
+        playerHealth.DamageReduction -= damageReduction;
+        if (gameObject)
         {
-            Destroy(parent);
+            Destroy(gameObject);
         }
     }
 
@@ -51,29 +49,27 @@ public class FirepoolPrefab : MonoBehaviour
 
         foreach (HealthComponent entity in entities)
         {
-            if (!user.CompareTag(entity.gameObject.tag))
-            {
-                entity.TakeDamage(damage, element);
-            }
+            entity.TakeDamage(damage, element);
         }
 
         yield return new WaitForSeconds(interval);
         waiting = false;
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out HealthComponent health) && !entities.Contains(health))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            entities.Add(health);
+            entities.Add(other.GetComponent<HealthComponent>());
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out HealthComponent health) && entities.Contains(health))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            entities.Remove(health);
+            entities.Remove(other.GetComponent<HealthComponent>());
         }
     }
 }

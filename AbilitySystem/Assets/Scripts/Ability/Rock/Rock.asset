@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1ed07d4ac7c024f87cd36f6e1765e0, type: 3}
+  m_Name: Rock
+  m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: 4d4a2814a80f0a24e9d2ae2bb508dd74, type: 2}
+  abilityName: Rock
+  abilityDescription: rock
+  cooldown: 4
+  duration: 1.75
+  damage: 13
+  blockFromUsingOtherAbilities: 0
+  prefab: {fileID: 6089214114238872858, guid: 04c418f459611ad4e8a655d4b0b3c0b8, type: 3}
+  speed: 15

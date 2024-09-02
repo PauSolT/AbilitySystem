@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Fireball")]
@@ -16,7 +12,7 @@ public class FireballAbility : Ability
     }
     public override void AbilityUse(GameObject user, Vector3 target)
     {
-        element.PassiveAbilitiy();
+        element.PassiveOnAbilitiy();
         fireball = Instantiate(prefab, user.transform.position, Quaternion.identity);
         fireball.GetComponent<FireballPrefab>().Init(user, target, damage, speed, duration, element);
     }
