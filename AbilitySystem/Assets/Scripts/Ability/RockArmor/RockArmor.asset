@@ -19,6 +19,7 @@ MonoBehaviour:
   duration: 4
   damage: 1.25
   blockFromUsingOtherAbilities: 0
+  targetingType: 1
   prefab: {fileID: 6089214114238872858, guid: 6514c3abbb6171942a037e33f9becc45, type: 3}
   interval: 0.25
   damageReduction: 20

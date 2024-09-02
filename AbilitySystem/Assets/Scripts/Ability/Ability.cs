@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Ability : ScriptableObject
@@ -15,8 +14,12 @@ public abstract class Ability : ScriptableObject
     public float damage;
     public bool blockFromUsingOtherAbilities;
 
+    public TargetingType targetingType;
+
     [NonSerialized]
     float lastUseTime;
+    public GameObject prefab;
+
 
     public bool IsOnCooldown()
     {
@@ -34,19 +37,45 @@ public abstract class Ability : ScriptableObject
     }
 
 
-    public GameObject prefab;
 
-    public void ActivateAbility(GameObject user, Vector3 target)
+    public void ActivateAbility(GameObject user, Vector3 target = new Vector3())
     {
         if (!IsOnCooldown())
         {
             lastUseTime = Time.time;
-            AbilityUse(user, target);
+            if (targetingType != TargetingType.Self)
+            {
+                AbilityUse(user, target);
+            }
+            else
+            {
+                AbilityUse(user);
+            }
+
+            if (blockFromUsingOtherAbilities)
+            {
+                GlobalCoroutines.Instance.StartCoroutine(BlockFromUsingAbilities());
+            }
         }
     }
 
-    public abstract void AbilityUse(GameObject user, Vector3 target);
+    IEnumerator BlockFromUsingAbilities()
+    {
+        PlayerElements.BlockedFromUsingAbilities = true;
+        yield return new WaitForSeconds(duration);
+        PlayerElements.BlockedFromUsingAbilities = false;
+    }
+
+    public abstract void AbilityUse(GameObject user, Vector3 target = new Vector3());
+
     public abstract void Unload();
 
     public abstract void Init();
+}
+
+public enum TargetingType
+{
+    Mouse,
+    Self,
+    Targetted
 }

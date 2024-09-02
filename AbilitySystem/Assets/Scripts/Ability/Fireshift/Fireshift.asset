@@ -19,4 +19,5 @@ MonoBehaviour:
   duration: 2
   damage: 0
   blockFromUsingOtherAbilities: 1
+  targetingType: 1
   prefab: {fileID: 0}

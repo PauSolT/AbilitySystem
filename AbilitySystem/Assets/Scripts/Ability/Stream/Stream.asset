@@ -15,10 +15,11 @@ MonoBehaviour:
   element: {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
   abilityName: stream
   abilityDescription: stream
-  cooldown: 2
-  duration: 10
+  cooldown: 3
+  duration: 2
   damage: 2
   blockFromUsingOtherAbilities: 1
+  targetingType: 0
   prefab: {fileID: 1977099615117686899, guid: e76293bc2e770ac43b11018a0bdad2e3, type: 3}
   interval: 1
   damageMultiplier: 1.3

@@ -12,17 +12,20 @@ public class PlayerElements : MonoBehaviour
     public List<Element> equippedElements = new List<Element>();
 
     ManagePlayerCooldowns uiPlayerCooldowns;
-    GameObject enemy;
+
+    [SerializeField]
+    public static GameObject Enemy;
 
     bool ability1Pressed;
     bool ability2Pressed;
     bool ability3Pressed;
     bool cycleElementPressed;
 
+    public static bool BlockedFromUsingAbilities = false;
+
     private void Start()
     {
         uiPlayerCooldowns = GetComponent<ManagePlayerCooldowns>();
-        enemy = FindObjectOfType<Enemy>().gameObject;
 
         foreach (Element elem in elements)
         {
@@ -46,6 +49,16 @@ public class PlayerElements : MonoBehaviour
 
     private void HandleInput()
     {
+        if (BlockedFromUsingAbilities)
+        {
+            ability1Pressed = false;
+            ability2Pressed = false;
+            ability3Pressed = false;
+            cycleElementPressed = false;
+            return;
+        };
+
+
         ability1Pressed = InputManager.Instance.GetAbility1Pressed();
         ability2Pressed = InputManager.Instance.GetAbility2Pressed();
         ability3Pressed = InputManager.Instance.GetAbility3Pressed();
@@ -100,7 +113,20 @@ public class PlayerElements : MonoBehaviour
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Vector3 mouseToWorld = Camera.main.ScreenToWorldPoint(mousePosition);
         mouseToWorld.z = 0;
-        ability.ActivateAbility(gameObject, mouseToWorld);
+
+        switch (ability.targetingType)
+        {
+            default:
+            case TargetingType.Mouse:
+                ability.ActivateAbility(gameObject, mouseToWorld);
+                break;
+            case TargetingType.Self:
+                ability.ActivateAbility(gameObject);
+                break;
+            case TargetingType.Targetted:
+                ability.ActivateAbility(gameObject, Enemy.transform.position);
+                break;
+        }
     }
 
     private Element GetCurrentElement()

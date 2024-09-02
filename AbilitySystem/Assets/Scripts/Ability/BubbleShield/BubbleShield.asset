@@ -19,6 +19,7 @@ MonoBehaviour:
   duration: 7
   damage: 15
   blockFromUsingOtherAbilities: 0
+  targetingType: 1
   prefab: {fileID: 6089214114238872858, guid: 0db9eb744b2646d43b3cb43d9e697f87, type: 3}
   shield: 20
   shieldMultiplier: 1.2
