@@ -18,6 +18,7 @@ public class HealthComponent : MonoBehaviour
 
     public float Shield { get; set; }
     public float DamageReduction { get; set; }
+    public float HealingPower { get; set; }
 
     void Awake()
     {
@@ -86,7 +87,7 @@ public class HealthComponent : MonoBehaviour
     {
         if (healAmount <= 0) return;
 
-        currentHealth += healAmount;
+        currentHealth += healAmount * 1 + (HealingPower / 100f);
 
         if (currentHealth > maxHealth)
         {

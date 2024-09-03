@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Element/Earth")]
 public class EarthElement : Element
 {
-    [SerializeField] private GameObject user;
+    private GameObject user;
     [SerializeField] private float shieldAmount = 10f;
     [SerializeField] private float duration = 10f;
 

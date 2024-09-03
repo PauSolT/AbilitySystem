@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Element/Fire")]
-public class FireElement : Element
+[CreateAssetMenu(menuName = "Element/Grass")]
+public class GrassElement : Element
 {
     private HealthComponent userHealth;
-    [SerializeField] private float healPercentPerAbility = 5f;
+    [SerializeField] private float healingPower = 5f;
 
     public override void Init()
     {
@@ -12,17 +12,16 @@ public class FireElement : Element
     }
     public override void PassiveOnSwitch()
     {
-
+        userHealth.HealingPower += healingPower;
     }
 
     public override void PassiveOffSwitch()
     {
-
+        userHealth.HealingPower -= healingPower;
     }
 
     public override void PassiveOnAbilitiy()
     {
-        userHealth.Heal(userHealth.maxHealth * healPercentPerAbility / 100);
-    }
 
+    }
 }
