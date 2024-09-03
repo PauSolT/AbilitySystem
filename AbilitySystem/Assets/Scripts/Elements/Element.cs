@@ -23,6 +23,8 @@ public enum ElementName
     Fire,
     Water,
     Earth,
+    Grass,
+    Air,
     Physical
 }
 

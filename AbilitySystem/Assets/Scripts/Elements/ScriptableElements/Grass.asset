@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308757b33026a5648916007e89f837f3, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  elementName: 0
-  abilities: []
+  elementName: 3
+  abilities:
+  - {fileID: 11400000, guid: 497aa6244e4b5c84f9bd999c5ec8db48, type: 2}
+  - {fileID: 11400000, guid: 497aa6244e4b5c84f9bd999c5ec8db48, type: 2}
+  - {fileID: 11400000, guid: 497aa6244e4b5c84f9bd999c5ec8db48, type: 2}
   elementColor:
     serializedVersion: 2
-    rgba: 0
-  userHealth: {fileID: 0}
-  healingPower: 5
+    rgba: 4281453147
+  healingPower: 10

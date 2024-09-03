@@ -4,7 +4,7 @@ using UnityEngine;
 public class GrassElement : Element
 {
     private HealthComponent userHealth;
-    [SerializeField] private float healingPower = 5f;
+    [SerializeField] private float healingPower;
 
     public override void Init()
     {
