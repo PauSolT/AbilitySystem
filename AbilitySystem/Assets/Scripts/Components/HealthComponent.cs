@@ -16,9 +16,9 @@ public class HealthComponent : MonoBehaviour
     [SerializeField]
     ShieldComponent[] shields;
 
-    public float Shield { get; set; }
-    public float DamageReduction { get; set; }
-    public float HealingPower { get; set; }
+    public float Shield { get; set; } = 0;
+    public float DamageReduction { get; set; } = 0;
+    public float HealingPower { get; set; } = 0;
 
     void Awake()
     {
@@ -87,7 +87,7 @@ public class HealthComponent : MonoBehaviour
     {
         if (healAmount <= 0) return;
 
-        currentHealth += healAmount * 1 + (HealingPower / 100f);
+        currentHealth += healAmount * (1 + (HealingPower / 100f));
 
         if (currentHealth > maxHealth)
         {

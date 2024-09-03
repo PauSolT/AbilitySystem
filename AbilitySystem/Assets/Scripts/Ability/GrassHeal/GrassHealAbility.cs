@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Abilities/Fireshift")]
-public class FireshiftAbility : Ability
+[CreateAssetMenu(menuName = "Abilities/Grass heal")]
+public class GrassHealAbility : Ability
 {
     HealthComponent userHealth;
     public override void Init()
@@ -13,8 +13,7 @@ public class FireshiftAbility : Ability
         {
             userHealth = user.GetComponent<HealthComponent>();
         }
-        element.PassiveOnAbilitiy();
-        userHealth.SetInvincible(duration);
+        userHealth.Heal(damage);
     }
 
     public override void Unload()

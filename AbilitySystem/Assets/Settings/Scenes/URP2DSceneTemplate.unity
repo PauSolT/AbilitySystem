@@ -342,6 +342,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 077d5764e2a58ef4e9f2753f27ce0906, type: 2}
   - {fileID: 11400000, guid: cd0407243f662a24999b9d35307ea5d2, type: 2}
   - {fileID: 11400000, guid: 4d4a2814a80f0a24e9d2ae2bb508dd74, type: 2}
+  - {fileID: 11400000, guid: 86c7b98ce4d31b8489409cad00466aa4, type: 2}
   equippedElements: []
 --- !u!114 &321570553
 MonoBehaviour:

@@ -70,16 +70,17 @@ public class PlayerElements : MonoBehaviour
         elements[currentElement].elementState = ElementState.Equipped;
         if (cycleElementPressed)
         {
+            GetCurrentElement().PassiveOffSwitch();
             currentElement++;
             if (currentElement >= elements.Count)
             {
                 currentElement = 0;
             }
+            GetCurrentElement().PassiveOnSwitch();
         }
 
         elements[currentElement].elementState = ElementState.Active;
         uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
-        GetCurrentElement().PassiveOnSwitch();
     }
 
     private void UpdateSlidersCooldown()
