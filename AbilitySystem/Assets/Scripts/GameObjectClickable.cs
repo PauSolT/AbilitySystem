@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameObjectClickable : MonoBehaviour
 {
-    private void OnMouseDown()
+    private void OnMouseEnter()
     {
         PlayerElements.Enemy = gameObject;
+    }
+
+    private void OnMouseExit()
+    {
+        PlayerElements.Enemy = null;
     }
 }

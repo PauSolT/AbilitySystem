@@ -124,7 +124,11 @@ public class PlayerElements : MonoBehaviour
                 ability.ActivateAbility(gameObject);
                 break;
             case TargetingType.Targetted:
-                ability.ActivateAbility(gameObject, Enemy.transform.position);
+                if (Enemy)
+                {
+                    ability.ActivateAbility(gameObject);
+                    Enemy = null;
+                }
                 break;
         }
     }

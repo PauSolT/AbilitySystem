@@ -43,7 +43,7 @@ public abstract class Ability : ScriptableObject
         if (!IsOnCooldown())
         {
             lastUseTime = Time.time;
-            if (targetingType != TargetingType.Self)
+            if (targetingType == TargetingType.Mouse)
             {
                 AbilityUse(user, target);
             }
