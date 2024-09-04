@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Air
   m_EditorClassIdentifier: 
   elementName: 4
-  abilities: []
+  abilities:
+  - {fileID: 11400000, guid: 4b2f88cba40bd4740aa538cc5a60712e, type: 2}
+  - {fileID: 11400000, guid: 4b2f88cba40bd4740aa538cc5a60712e, type: 2}
+  - {fileID: 11400000, guid: 4b2f88cba40bd4740aa538cc5a60712e, type: 2}
   elementColor:
     serializedVersion: 2
     rgba: 4293059298

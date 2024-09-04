@@ -8,7 +8,7 @@ public class SeedlingAbility : Ability
 
     public override void Init()
     {
-
+        base.Init();
     }
     public override void AbilityUse(GameObject user, Vector3 target)
     {

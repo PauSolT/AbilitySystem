@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject
 {
-
     public Element element;
     public string abilityName;
     public string abilityDescription;
@@ -13,6 +12,9 @@ public abstract class Ability : ScriptableObject
     public float duration;
     public float damage;
     public bool blockFromUsingOtherAbilities;
+    public int charges;
+    [SerializeField]
+    protected int currentCharges;
 
     public TargetingType targetingType;
 
@@ -42,7 +44,6 @@ public abstract class Ability : ScriptableObject
     {
         if (!IsOnCooldown())
         {
-            lastUseTime = Time.time;
             if (targetingType == TargetingType.Mouse)
             {
                 AbilityUse(user, target);
@@ -51,10 +52,15 @@ public abstract class Ability : ScriptableObject
             {
                 AbilityUse(user);
             }
+            currentCharges--;
 
             if (blockFromUsingOtherAbilities)
             {
                 GlobalCoroutines.Instance.StartCoroutine(BlockFromUsingAbilities());
+            }
+            if (currentCharges <= 0)
+            {
+                StartCooldown();
             }
         }
     }
@@ -66,16 +72,26 @@ public abstract class Ability : ScriptableObject
         PlayerElements.BlockedFromUsingAbilities = false;
     }
 
+    protected void StartCooldown()
+    {
+        lastUseTime = Time.time;
+        currentCharges = charges;
+    }
+
     public abstract void AbilityUse(GameObject user, Vector3 target = new Vector3());
 
     public abstract void Unload();
 
-    public abstract void Init();
+    public virtual void Init()
+    {
+        currentCharges = charges;
+    }
 }
 
 public enum TargetingType
 {
     Mouse,
     Self,
-    Targetted
+    Targetted,
+    Direction
 }

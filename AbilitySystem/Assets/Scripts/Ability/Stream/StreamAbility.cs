@@ -12,6 +12,7 @@ public class StreamAbility : Ability
 
     public override void Init()
     {
+        base.Init();
         waterElement = element as WaterElement;
     }
 

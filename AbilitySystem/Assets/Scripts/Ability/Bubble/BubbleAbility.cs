@@ -12,6 +12,7 @@ public class BubbleAbility : Ability
 
     public override void Init()
     {
+        base.Init();
         waterElement = element as WaterElement;
     }
 

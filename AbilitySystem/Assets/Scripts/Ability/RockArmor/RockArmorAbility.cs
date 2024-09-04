@@ -12,6 +12,7 @@ public class RockArmorAbility : Ability
 
     public override void Init()
     {
+        base.Init();
         playerHealth = GameObject.Find("Player").GetComponent<HealthComponent>();
     }
 
