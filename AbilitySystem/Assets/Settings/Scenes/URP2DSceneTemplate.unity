@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 321570553}
   - component: {fileID: 321570552}
   - component: {fileID: 321570560}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1040,7 +1040,7 @@ GameObject:
   - component: {fileID: 903423098}
   - component: {fileID: 903423097}
   - component: {fileID: 903423103}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1119,7 +1119,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 1c0ef205972556841931b5706b1b644a, type: 2}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &903423101

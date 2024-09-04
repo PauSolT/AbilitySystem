@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ea85a16caed524b929b9df5840df0c, type: 3}
-  m_Name: Grass Heal
+  m_Script: {fileID: 11500000, guid: 32e1636705a35184ba9fa90988de74be, type: 3}
+  m_Name: Bomb seed
   m_EditorClassIdentifier: 
   element: {fileID: 11400000, guid: 86c7b98ce4d31b8489409cad00466aa4, type: 2}
-  abilityName: heal
-  abilityDescription: heal
-  cooldown: 4
-  duration: 0
-  damage: 15
+  abilityName: bombseed
+  abilityDescription: bomb seed
+  cooldown: 3
+  duration: 2
+  damage: 20
   blockFromUsingOtherAbilities: 0
-  targetingType: 1
-  prefab: {fileID: 0}
+  targetingType: 0
+  prefab: {fileID: 6089214114238872858, guid: d3db4d089f5b742478cbe075c5c1de70, type: 3}
+  speed: 9
+  heal: 15
