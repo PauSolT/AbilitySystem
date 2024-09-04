@@ -18,6 +18,15 @@ public class PlayerMovement : MonoBehaviour
     bool disableMovement = false;
     public bool facingRight = true;
 
+    public void SetRunSpeed(float runSpeed)
+    {
+        this.runSpeed = runSpeed;
+    }
+
+    public float GetRunSpeed()
+    {
+        return runSpeed;
+    }
 
     private void Awake()
     {
@@ -26,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    Element element;
 
     private void FixedUpdate()
     {
@@ -43,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    Element element;
     private void Update()
     {
 
