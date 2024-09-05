@@ -375,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 6
   jumpSpeed: 10
+  dashSpeed: 50
   facingRight: 1
 --- !u!212 &321570556
 SpriteRenderer:
@@ -1041,7 +1042,7 @@ GameObject:
   - component: {fileID: 903423098}
   - component: {fileID: 903423097}
   - component: {fileID: 903423103}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

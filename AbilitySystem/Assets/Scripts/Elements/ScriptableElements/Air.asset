@@ -15,8 +15,8 @@ MonoBehaviour:
   elementName: 4
   abilities:
   - {fileID: 11400000, guid: 4b2f88cba40bd4740aa538cc5a60712e, type: 2}
-  - {fileID: 11400000, guid: 4b2f88cba40bd4740aa538cc5a60712e, type: 2}
-  - {fileID: 11400000, guid: 4b2f88cba40bd4740aa538cc5a60712e, type: 2}
+  - {fileID: 11400000, guid: 6435c7bb3067ca246a32f7b8751ed510, type: 2}
+  - {fileID: 11400000, guid: 3d5f44ef9ebfabe48872cbf2d45b65fd, type: 2}
   elementColor:
     serializedVersion: 2
     rgba: 4293059298

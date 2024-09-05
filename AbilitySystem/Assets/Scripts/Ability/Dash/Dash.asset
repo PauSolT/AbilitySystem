@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4d76d5bab43284293fc631db5c0392, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  element: {fileID: 0}
-  abilityName: 
-  abilityDescription: 
-  cooldown: 0
-  duration: 0
+  element: {fileID: 11400000, guid: 1b897fb53d5a2f14ea859eda1caaab16, type: 2}
+  abilityName: dash
+  abilityDescription: dash
+  cooldown: 3
+  duration: 0.1
   damage: 0
-  blockFromUsingOtherAbilities: 0
-  charges: 0
-  currentCharges: 0
-  targetingType: 0
+  blockFromUsingOtherAbilities: 1
+  charges: 2
+  targetingType: 3
   prefab: {fileID: 0}
-  dashSpeed: 0
-  dashTime: 0
+  timeForSecondActivation: 3
