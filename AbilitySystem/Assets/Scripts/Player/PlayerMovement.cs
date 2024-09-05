@@ -5,6 +5,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float runSpeed = 6.0f;
     [SerializeField] float jumpSpeed = 8.0f;
+    [SerializeField] float dashSpeed;
+
 
     BoxCollider2D coll;
     Rigidbody2D rb;
@@ -15,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
     bool disableMovement = false;
     public bool facingRight = true;
+
+    public bool Dashing { get; set; } = false;
 
     public void SetRunSpeed(float runSpeed)
     {
@@ -88,7 +92,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        rb.velocity = new Vector2(moveDirection.x * runSpeed, rb.velocity.y);
+        if (!Dashing)
+        {
+            rb.velocity = new Vector2(moveDirection.x * runSpeed, rb.velocity.y);
+        }
+        else if (Dashing)
+        {
+            rb.velocity = new Vector2(facingRight ? dashSpeed : -dashSpeed, 0);
+
+        }
     }
 
     private void UpdateFacingDirection()

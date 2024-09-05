@@ -13,7 +13,6 @@ public abstract class Ability : ScriptableObject
     public float damage;
     public bool blockFromUsingOtherAbilities;
     public int charges;
-    [SerializeField]
     protected int currentCharges;
 
     public TargetingType targetingType;
