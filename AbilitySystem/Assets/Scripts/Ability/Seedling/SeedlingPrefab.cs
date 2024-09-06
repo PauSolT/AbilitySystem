@@ -20,14 +20,17 @@ public class SeedlingPrefab : MonoBehaviour
         this.element = element;
         this.flightDuration = flightDuration;
         StartCoroutine(Unload(duration));
+        SetParabolaSettings();
+    }
 
+    void SetParabolaSettings()
+    {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
 
         Vector2 initialVelocity = CalculateInitialVelocity();
         rb.velocity = initialVelocity;
     }
-
 
     Vector2 CalculateInitialVelocity()
     {

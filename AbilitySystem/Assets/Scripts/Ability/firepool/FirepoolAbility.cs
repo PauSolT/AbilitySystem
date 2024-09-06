@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,7 +15,7 @@ public class FirepoolAbility : Ability
     {
         element.PassiveOnAbilitiy();
         firepool = Instantiate(prefab, target, Quaternion.identity);
-        firepool.GetComponentInChildren<FirepoolPrefab>().Init(user, target, damage, interval, duration, element);
+        firepool.GetComponentInChildren<FirepoolPrefab>().Init(user, damage, interval, duration, element);
     }
 
     public override void Unload()

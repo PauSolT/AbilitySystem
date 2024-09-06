@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SlashPrefab : MonoBehaviour
@@ -18,8 +17,8 @@ public class SlashPrefab : MonoBehaviour
         this.speed = speed;
         this.element = element;
         movement = user.GetComponent<PlayerMovement>();
-        StartCoroutine(Unload(duration));
         direction = movement.facingRight ? Vector3.right : Vector3.left;
+        StartCoroutine(Unload(duration));
     }
 
     public void Update()

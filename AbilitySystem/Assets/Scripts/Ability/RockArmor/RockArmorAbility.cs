@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/RockArmor")]
@@ -19,7 +17,6 @@ public class RockArmorAbility : Ability
     public override void AbilityUse(GameObject user, Vector3 target)
     {
         element.PassiveOnAbilitiy();
-
         playerHealth.DamageReduction += damageReduction;
         armor = Instantiate(prefab, user.transform.position, Quaternion.identity, user.transform);
         armor.GetComponent<RockArmorPrefab>().Init(damage, duration, interval, element, playerHealth, damageReduction);

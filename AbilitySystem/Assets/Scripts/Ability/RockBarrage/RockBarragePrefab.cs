@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RockBarragePrefab : MonoBehaviour
@@ -11,7 +10,6 @@ public class RockBarragePrefab : MonoBehaviour
     float damage;
     float speed;
     float angle;
-
     bool readyToLaunch = false;
 
     GameObject enemy;
@@ -31,16 +29,20 @@ public class RockBarragePrefab : MonoBehaviour
     {
         if (enemy != null)
         {
-            target = enemy.transform.position;
-            direction = target - user.transform.position;
-            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
+            transform.rotation = SetRockAngle();
             if (readyToLaunch)
             {
                 transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             }
         }
+    }
+
+    Quaternion SetRockAngle()
+    {
+        target = enemy.transform.position;
+        direction = target - user.transform.position;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
     public void ReadyToLaunch()

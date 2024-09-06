@@ -26,7 +26,6 @@ public class ManagePlayerCooldowns : MonoBehaviour
     {
         ability2.value = normalizedCooldown;
     }
-
     public void UpdateSlider3Cooldown(float normalizedCooldown)
     {
         ability3.value = normalizedCooldown;
@@ -36,8 +35,6 @@ public class ManagePlayerCooldowns : MonoBehaviour
     {
         foreach (Image img in sliderImages)
         {
-            img.color = color;
-            img.color = color;
             img.color = color;
         }
     }

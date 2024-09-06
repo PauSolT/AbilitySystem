@@ -7,34 +7,20 @@ public class FirepoolPrefab : MonoBehaviour
     Element element;
     GameObject user;
     GameObject parent;
-    Vector3 target;
     float damage;
     float interval;
 
     List<HealthComponent> entities = new List<HealthComponent>();
-
     bool waiting = false;
 
-
-    public void Init(GameObject user, Vector3 target, float damage, float interval, float duration, Element element)
+    public void Init(GameObject user, float damage, float interval, float duration, Element element)
     {
         this.user = user;
-        this.target = target;
         this.damage = damage;
         this.interval = interval;
         this.element = element;
-        StartCoroutine(Unload(duration));
-
         parent = gameObject.transform.parent.gameObject;
-    }
-
-    private IEnumerator Unload(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        if (parent)
-        {
-            Destroy(parent);
-        }
+        StartCoroutine(Unload(duration));
     }
 
     public void Update()
@@ -76,4 +62,14 @@ public class FirepoolPrefab : MonoBehaviour
             entities.Remove(health);
         }
     }
+
+    private IEnumerator Unload(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        if (parent)
+        {
+            Destroy(parent);
+        }
+    }
+
 }

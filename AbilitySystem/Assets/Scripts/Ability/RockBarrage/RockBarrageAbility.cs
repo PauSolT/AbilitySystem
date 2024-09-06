@@ -23,7 +23,6 @@ public class RockBarrageAbility : Ability
         element.PassiveOnAbilitiy();
         rocks.Clear();
         GlobalCoroutines.Instance.StartCoroutine(ReadyRocks(user));
-
     }
 
     IEnumerator ReadyRocks(GameObject user)

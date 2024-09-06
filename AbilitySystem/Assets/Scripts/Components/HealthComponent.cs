@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-
     public float maxHealth = 100f;
 
     [SerializeField]
@@ -28,17 +27,22 @@ public class HealthComponent : MonoBehaviour
     float ShieldTakesDamage(float damage)
     {
         float damageToHealth = 0;
+        //if no damage, return 0
         if (damage <= 0) return damageToHealth;
+        //if no shield, return damage
         if (Shield <= 0) return damage;
 
         shields = GetComponents<ShieldComponent>();
 
-        if (!shields[0] || shields == null) damageToHealth = damage;
+        //if no shield component, return damage
+        if (!shields[0] || shields == null) return damage;
+
 
         if (shields[0] && Shield > 0)
         {
             shields[0].ShieldDamage(damage);
-
+            //if shield has been destroyed but damage > 0
+            //go through other shields and deal damage to them
             if (shields[0].Shield <= 0)
             {
                 float restOfDamage = Mathf.Abs(shields[0].Shield);
@@ -56,8 +60,10 @@ public class HealthComponent : MonoBehaviour
                         restOfDamage = 0;
                     }
                 }
-
             }
+            //if all shields are destroyed but damage > 0
+            //return the negative shield of last shield as damage
+            //and set shield to 0
             if (shields[shields.Length - 1].Shield <= 0)
             {
                 damageToHealth = Mathf.Abs(shields[shields.Length - 1].Shield);
@@ -88,7 +94,6 @@ public class HealthComponent : MonoBehaviour
         if (healAmount <= 0) return;
 
         currentHealth += healAmount * (1 + (HealingPower / 100f));
-
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
@@ -105,6 +110,7 @@ public class HealthComponent : MonoBehaviour
     {
         StartCoroutine(InvinciblePeriod(duration));
     }
+
     public IEnumerator InvinciblePeriod(float duration)
     {
         invincible = true;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Bomb seed")]
@@ -17,7 +15,6 @@ public class BombSeedAbility : Ability
     {
         bombSeed = Instantiate(prefab, user.transform.position, Quaternion.identity);
         bombSeed.GetComponent<BombSeedPrefab>().Init(user, target, damage, heal, speed, duration, element);
-
     }
 
     public override void Unload()

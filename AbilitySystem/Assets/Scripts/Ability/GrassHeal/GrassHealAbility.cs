@@ -10,7 +10,7 @@ public class GrassHealAbility : Ability
     }
     public override void AbilityUse(GameObject user, Vector3 target)
     {
-        if (userHealth == null)
+        if (!userHealth)
         {
             userHealth = user.GetComponent<HealthComponent>();
         }

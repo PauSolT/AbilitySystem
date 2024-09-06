@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Dash")]
@@ -8,6 +7,8 @@ public class DashAbility : Ability
     Rigidbody2D rb;
     PlayerMovement playerMovement;
     public float timeForSecondActivation;
+    float gravityScale;
+    float normalRunSpeed;
 
     Coroutine timer;
 
@@ -30,12 +31,16 @@ public class DashAbility : Ability
 
     IEnumerator Dash()
     {
-        float gravityScale = rb.gravityScale;
-        float normalRunSpeed = playerMovement.GetRunSpeed();
+        gravityScale = rb.gravityScale;
+        normalRunSpeed = playerMovement.GetRunSpeed();
         rb.gravityScale = 0;
         playerMovement.Dashing = true;
-        if (currentCharges == 2)
+        if (currentCharges >= 2)
         {
+            if (timer != null)
+            {
+                GlobalCoroutines.Instance.StopCoroutine(timer);
+            }
             timer = GlobalCoroutines.Instance.StartCoroutine(StartTimerForSecondActivation());
         }
         else if (currentCharges == 1)

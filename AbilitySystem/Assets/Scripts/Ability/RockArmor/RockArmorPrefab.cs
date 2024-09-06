@@ -11,7 +11,7 @@ public class RockArmorPrefab : MonoBehaviour
     float damageReduction;
     float interval;
 
-    [SerializeField] List<HealthComponent> entities = new List<HealthComponent>();
+    [SerializeField] HashSet<HealthComponent> entities = new HashSet<HealthComponent>();
 
     bool waiting = false;
 
@@ -23,16 +23,6 @@ public class RockArmorPrefab : MonoBehaviour
         this.playerHealth = playerHealth;
         this.damageReduction = damageReduction;
         StartCoroutine(Unload(duration));
-    }
-
-    private IEnumerator Unload(float duration)
-    {
-        yield return new WaitForSeconds(duration);
-        playerHealth.DamageReduction -= damageReduction;
-        if (gameObject)
-        {
-            Destroy(gameObject);
-        }
     }
 
     public void Update()
@@ -56,7 +46,6 @@ public class RockArmorPrefab : MonoBehaviour
         waiting = false;
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -70,6 +59,16 @@ public class RockArmorPrefab : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             entities.Remove(other.GetComponent<HealthComponent>());
+        }
+    }
+
+    private IEnumerator Unload(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        playerHealth.DamageReduction -= damageReduction;
+        if (gameObject)
+        {
+            Destroy(gameObject);
         }
     }
 }

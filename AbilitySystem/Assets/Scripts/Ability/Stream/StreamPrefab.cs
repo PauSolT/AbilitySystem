@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StreamPrefab : MonoBehaviour
@@ -36,22 +35,18 @@ public class StreamPrefab : MonoBehaviour
 
     public void Update()
     {
-        if (player)
-        {
-            if (player.facingRight)
-            {
-                transform.position = player.transform.position + new Vector3(transform.localScale.z / 2 + 2f, 0.5f, 0);
-            }
-            else
-            {
-                transform.position = player.transform.position + new Vector3(-(transform.localScale.z / 2 + 2f), 0.5f, 0);
-            }
-        }
+        transform.position = player.transform.position +
+        new Vector3(SetStreamX(), 0.5f, 0);
 
         if (entities.Count > 0 && !waiting)
         {
             StartCoroutine(ActiveAbility());
         }
+    }
+
+    float SetStreamX()
+    {
+        return player.facingRight ? transform.localScale.z / 2 + 2f : -(transform.localScale.z / 2 + 2f);
     }
 
     private IEnumerator ActiveAbility()

@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     {
         coll = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
-
     }
 
 
@@ -50,13 +49,12 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleJumping();
         UpdateFacingDirection();
-
     }
 
+    //For testing purposes
     Element element;
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             GetComponent<HealthComponent>().TakeDamage(50, element);

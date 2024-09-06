@@ -1,36 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 public class BombSeedPrefab : MonoBehaviour
 {
     Element element;
     GameObject user;
-    Vector3 target;
     Vector3 direction;
     float damage;
     float heal;
     float speed;
     HashSet<HealthComponent> entities = new HashSet<HealthComponent>();
-
     bool attached = false;
 
     public void Init(GameObject user, Vector3 target, float damage, float heal, float speed, float duration, Element element)
     {
         this.user = user;
-        this.target = target;
         this.damage = damage;
         this.heal = heal;
         this.speed = speed;
         this.element = element;
-        StartCoroutine(Unload(duration));
         direction = (target - transform.position).normalized;
+        StartCoroutine(Unload(duration));
     }
 
     public void Update()
     {
-        if (target != null && !attached)
+        if (!attached)
         {
             transform.position += speed * Time.deltaTime * direction;
         }
@@ -38,7 +34,7 @@ public class BombSeedPrefab : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out HealthComponent health) && !other.CompareTag(user.tag))
+        if (other.TryGetComponent(out HealthComponent health))
         {
             entities.Add(health);
         }
@@ -67,6 +63,16 @@ public class BombSeedPrefab : MonoBehaviour
     private IEnumerator Unload(float duration)
     {
         yield return new WaitForSeconds(duration);
+        OnUnload();
+
+        if (gameObject)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void OnUnload()
+    {
         foreach (HealthComponent enemy in entities)
         {
             enemy.TakeDamage(damage, element);
@@ -75,10 +81,6 @@ public class BombSeedPrefab : MonoBehaviour
         {
             user.GetComponent<HealthComponent>().Heal(heal);
         }
-
-        if (gameObject)
-        {
-            Destroy(gameObject);
-        }
     }
+
 }

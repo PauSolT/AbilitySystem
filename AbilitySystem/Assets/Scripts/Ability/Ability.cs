@@ -38,7 +38,6 @@ public abstract class Ability : ScriptableObject
     }
 
 
-
     public void ActivateAbility(GameObject user, Vector3 target = new Vector3())
     {
         if (!IsOnCooldown())

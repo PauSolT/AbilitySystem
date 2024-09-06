@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TreeEditor;
 using UnityEngine;
 
 public class TornadoPrefab : MonoBehaviour
@@ -16,8 +15,7 @@ public class TornadoPrefab : MonoBehaviour
     float interval;
     int combined = 1;
     Coroutine unload;
-
-    List<HealthComponent> entities = new List<HealthComponent>();
+    HashSet<HealthComponent> entities = new HashSet<HealthComponent>();
     Rigidbody2D rb;
     bool waiting = false;
 
@@ -35,14 +33,13 @@ public class TornadoPrefab : MonoBehaviour
         this.damageMultiplier = damageMultiplier;
         this.element = element;
         this.interval = interval;
-        unload = StartCoroutine(Unload(duration));
         rb = GetComponentInParent<Rigidbody2D>();
         if ((target - user.transform.position).normalized.x < 0)
         {
             this.speed = -speed;
         }
-
         parent = transform.parent;
+        unload = StartCoroutine(Unload(duration));
     }
     public void FixedUpdate()
     {
@@ -78,11 +75,16 @@ public class TornadoPrefab : MonoBehaviour
 
         if (other.TryGetComponent(out TornadoPrefab tornado))
         {
-            if (tornado != this && combined >= tornado.combined)
-            {
-                Destroy(tornado.parent.gameObject);
-                CombineTornado();
-            }
+            CheckToComineTornado(tornado);
+        }
+    }
+
+    void CheckToComineTornado(TornadoPrefab tornado)
+    {
+        if (tornado != this && combined >= tornado.combined)
+        {
+            Destroy(tornado.parent.gameObject);
+            CombineTornado();
         }
     }
 

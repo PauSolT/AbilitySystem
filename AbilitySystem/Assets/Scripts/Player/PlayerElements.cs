@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
 public class PlayerElements : MonoBehaviour
 {
@@ -26,16 +24,29 @@ public class PlayerElements : MonoBehaviour
     private void Start()
     {
         uiPlayerCooldowns = GetComponent<ManagePlayerCooldowns>();
+        InitElements();
+        SetActiveElement();
+    }
 
+    void InitElements()
+    {
         foreach (Element elem in elements)
         {
             elem.Init();
-            foreach (Ability abil in elem.abilities)
-            {
-                abil.Init();
-            }
+            InitAbilities(elem);
         }
-        elements[currentElement].elementState = ElementState.Active;
+    }
+
+    void InitAbilities(Element elem)
+    {
+        foreach (Ability abil in elem.abilities)
+        {
+            abil.Init();
+        }
+    }
+
+    void SetSliderCooldownColors()
+    {
         uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
     }
 
@@ -51,10 +62,7 @@ public class PlayerElements : MonoBehaviour
     {
         if (BlockedFromUsingAbilities)
         {
-            ability1Pressed = false;
-            ability2Pressed = false;
-            ability3Pressed = false;
-            cycleElementPressed = false;
+            AbilitiesBlocked();
             return;
         };
 
@@ -65,11 +73,19 @@ public class PlayerElements : MonoBehaviour
         cycleElementPressed = InputManager.Instance.GetCycleElementPressed();
     }
 
+    private void AbilitiesBlocked()
+    {
+        ability1Pressed = false;
+        ability2Pressed = false;
+        ability3Pressed = false;
+        cycleElementPressed = false;
+    }
+
     private void HandleCyclingElements()
     {
-        elements[currentElement].elementState = ElementState.Equipped;
         if (cycleElementPressed)
         {
+            elements[currentElement].elementState = ElementState.Equipped;
             GetCurrentElement().PassiveOffSwitch();
             currentElement++;
             if (currentElement >= elements.Count)
@@ -78,11 +94,14 @@ public class PlayerElements : MonoBehaviour
             }
             GetCurrentElement().PassiveOnSwitch();
         }
-
-        elements[currentElement].elementState = ElementState.Active;
-        uiPlayerCooldowns.UpdateSliderColors(GetCurrentElement().elementColor);
+        SetActiveElement();
     }
 
+    void SetActiveElement()
+    {
+        elements[currentElement].elementState = ElementState.Active;
+        SetSliderCooldownColors();
+    }
     private void UpdateSlidersCooldown()
     {
         if (uiPlayerCooldowns)

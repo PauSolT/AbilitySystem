@@ -7,7 +7,7 @@ public class BubbleShiledPrefab : MonoBehaviour
 
     Element element;
     float damage;
-    [SerializeField] List<HealthComponent> entities = new List<HealthComponent>();
+    [SerializeField] HashSet<HealthComponent> entities = new HashSet<HealthComponent>();
 
 
     public void Init(float damage, float duration, Element element)

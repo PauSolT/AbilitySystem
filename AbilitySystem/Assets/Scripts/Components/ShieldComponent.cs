@@ -12,7 +12,11 @@ public class ShieldComponent : MonoBehaviour
     public void Init(float shield, float time)
     {
         totalShield = GetComponent<HealthComponent>();
-        Shield = shield;
+        CheckIfShieldHasTime(shield, time);
+    }
+
+    void CheckIfShieldHasTime(float shield, float time)
+    {
         if (time == -1f)
         {
             Shield = shield;
@@ -23,6 +27,7 @@ public class ShieldComponent : MonoBehaviour
             StartCoroutine(TimedShield(shield, time));
         }
     }
+
     public void DamageShieldOnly(float damage)
     {
         Shield -= damage;
