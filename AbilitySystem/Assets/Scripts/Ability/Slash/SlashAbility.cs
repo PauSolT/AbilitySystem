@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/Slash")]
@@ -7,8 +6,6 @@ public class SlashAbility : Ability
     GameObject slash;
     public float speed;
     public float timeForSecondActivation;
-
-    Coroutine timer;
 
     public override void Init()
     {
@@ -21,24 +18,7 @@ public class SlashAbility : Ability
         slash = Instantiate(prefab, user.transform.position, Quaternion.Euler(0, 0, currentCharges == 2 ? -40f : 40));
         slash.GetComponent<SlashPrefab>().Init(user, damage, speed, duration, element);
 
-        if (currentCharges >= 2)
-        {
-            if (timer == null)
-            {
-                GlobalCoroutines.Instance.StopCoroutine(timer);
-            }
-            timer = GlobalCoroutines.Instance.StartCoroutine(StartTimerForSecondActivation());
-        }
-        else if (currentCharges == 1)
-        {
-            GlobalCoroutines.Instance.StopCoroutine(timer);
-        }
-    }
-
-    IEnumerator StartTimerForSecondActivation()
-    {
-        yield return new WaitForSeconds(timeForSecondActivation);
-        StartCooldown();
+        NextCharge(timeForSecondActivation);
     }
 
     public override void Unload()

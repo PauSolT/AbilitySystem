@@ -20,8 +20,12 @@ public abstract class Ability : ScriptableObject
     [NonSerialized]
     float lastUseTime;
     public GameObject prefab;
+    Coroutine timer;
 
-
+    public virtual void Init()
+    {
+        currentCharges = charges;
+    }
     public bool IsOnCooldown()
     {
         return Time.time < lastUseTime + cooldown;
@@ -80,9 +84,26 @@ public abstract class Ability : ScriptableObject
 
     public abstract void Unload();
 
-    public virtual void Init()
+    protected void NextCharge(float timeForCooldownActivation)
     {
-        currentCharges = charges;
+        if (currentCharges >= 2)
+        {
+            if (timer != null)
+            {
+                GlobalCoroutines.Instance.StopCoroutine(timer);
+            }
+            timer = GlobalCoroutines.Instance.StartCoroutine(StartTimerForCooldownActivation(timeForCooldownActivation));
+        }
+        else if (currentCharges == 1)
+        {
+            GlobalCoroutines.Instance.StopCoroutine(timer);
+        }
+    }
+
+    IEnumerator StartTimerForCooldownActivation(float timeForCooldownActivation)
+    {
+        yield return new WaitForSeconds(timeForCooldownActivation);
+        StartCooldown();
     }
 }
 

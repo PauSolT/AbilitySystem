@@ -9,9 +9,9 @@ public class FirepoolPrefab : MonoBehaviour
     GameObject parent;
     float damage;
     float interval;
-
     List<HealthComponent> entities = new List<HealthComponent>();
     bool waiting = false;
+
 
     public void Init(GameObject user, float damage, float interval, float duration, Element element)
     {

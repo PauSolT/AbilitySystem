@@ -10,8 +10,6 @@ public class DashAbility : Ability
     float gravityScale;
     float normalRunSpeed;
 
-    Coroutine timer;
-
     public override void Init()
     {
         base.Init();
@@ -35,30 +33,13 @@ public class DashAbility : Ability
         normalRunSpeed = playerMovement.GetRunSpeed();
         rb.gravityScale = 0;
         playerMovement.Dashing = true;
-        if (currentCharges >= 2)
-        {
-            if (timer != null)
-            {
-                GlobalCoroutines.Instance.StopCoroutine(timer);
-            }
-            timer = GlobalCoroutines.Instance.StartCoroutine(StartTimerForSecondActivation());
-        }
-        else if (currentCharges == 1)
-        {
-            GlobalCoroutines.Instance.StopCoroutine(timer);
-        }
+        NextCharge(timeForSecondActivation);
         yield return new WaitForSeconds(duration);
 
         rb.gravityScale = gravityScale;
         playerMovement.SetRunSpeed(normalRunSpeed);
         playerMovement.Dashing = false;
 
-    }
-
-    IEnumerator StartTimerForSecondActivation()
-    {
-        yield return new WaitForSeconds(timeForSecondActivation);
-        StartCooldown();
     }
 
 }
