@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 7501215275168228538}
   - component: {fileID: 1645674048704077022}
   - component: {fileID: 773162226975834978}
-  - component: {fileID: 6201039882099894365}
+  - component: {fileID: 343549896608741311}
   m_Layer: 31
   m_Name: Firepool
   m_TagString: Untagged
@@ -184,15 +184,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.1}
   m_EdgeRadius: 0
---- !u!114 &6201039882099894365
-MonoBehaviour:
+--- !u!50 &343549896608741311
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6089214114238872858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a7c862b6f89004c9f2efd80fe36a7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
